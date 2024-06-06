@@ -7,6 +7,8 @@ from adminapp.models import Course, Student, Video
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+
+from socialMedia.models import Post
 from .models import Student  # Assuming you have a Student model
 from django.shortcuts import render, get_object_or_404
 # from .models import Post, Comment
@@ -117,6 +119,9 @@ def storyplat(request):
 def storyindx(request):
     return render(request,'story_index.html')
 
+
+def gotoSocialMedia(request):
+    return render(request,'socialmedia.html')
     
 
 # import anthropic

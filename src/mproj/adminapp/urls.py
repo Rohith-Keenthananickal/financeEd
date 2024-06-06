@@ -22,6 +22,7 @@ urlpatterns = [
     path('storyplat',storyplat,name='storyplat'),
     path('storyindx',storyindx,name='storyindx'),
     path('home',home, name='home'),
+    path('socialmedia',gotoSocialMedia, name='socialmedia'),
     # path('',new_post, name='post'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

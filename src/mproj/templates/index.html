@@ -26,7 +26,7 @@
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
-                  {% comment %} <img src="{% static 'images/logotransp (1).png' %}" width="190px" height="90px"alt="" srcset=""> {% endcomment %}
+                  {% comment %} <img src="{% static 'images/logoWhiteBack.png' %}" width="190px" height="90px"alt="" srcset=""> {% endcomment %}
                   <a class="navbar-brand " href="#" style="color:white; margin-right:30%;font-size:30px">Financ<span class="brand">E</span>d</a>
                   <div class="collapse navbar-collapse text-center" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
@@ -40,7 +40,7 @@
                         <a class="nav-link" href="#learn">Learn</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Social</a>
+                        <a class="nav-link" href="{% url 'socialmedia' %}">Social</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href={% url "signup" %}>Login</a>

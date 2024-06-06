@@ -12,35 +12,32 @@ from django.contrib.auth.models import User
 
 class User(AbstractUser):
     class Role(models.TextChoices):
-        ADMIN = "ADMIN",'Admin'
-        STUDENT = "STUDENT",'Student'
+        ADMIN = "ADMIN", 'Admin'
+        STUDENT = "STUDENT", 'Student'
 
     base_role = Role.ADMIN
-    role = models.CharField(max_length=100,choices=Role.choices)
+    role = models.CharField(max_length=100, choices=Role.choices)
 
-    def save(self,*args,**kwargs):
-
+    def save(self, *args, **kwargs):
         if not self.pk:
             self.role = self.base_role
-            return super().save(*args,**kwargs)
-    
+        super().save(*args, **kwargs)
+
 class StudentManager(BaseUserManager):
-    def get_queryset(self,*args,**kwargs):
+    def get_queryset(self, *args, **kwargs):
         result = super().get_queryset()
         return result.filter(role=User.Role.STUDENT)
-        
-class Student(User):
 
+class Student(User):
     base_role = User.Role.STUDENT
 
-    class Meta :
+    class Meta:
         proxy = True
-    
+
     student = StudentManager()
 
     def welcome(self):
-
-        return "only For Students"
+        return "Only for Students"
     
 class Course(models.Model):
     course_name = models.CharField(max_length=30,blank=False,null=False,unique=True)
