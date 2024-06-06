@@ -1,0 +1,227 @@
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+#menu-icon{
+    font-size: 3.6rem;
+
+    color: yellowgreen;
+
+    cursor: pointer;
+/*  */
+    display: none;
+}
+
+section{
+    min-height: 20vh;
+    padding: 10rem 9% 2rem 9%;
+}
+
+.heading{
+    font-size: 5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+
+    padding-top: 6rem;
+    padding-bottom: 3.5rem;
+
+}
+
+.education{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: auto;
+    padding-bottom: 5rem;
+
+}
+
+
+.education .education-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10rem;
+}
+
+
+.education-row .education-column{
+    flex: 1 1 40rem;
+}
+
+.education-column .title{
+    font-size: 2rem;
+
+    margin: 0 0 1.5rem 2rem;
+}
+
+.education-column .education-box{
+    border-left: .2rem solid yellowgreen ;
+}
+
+
+
+.education-box .education-content{
+    position: relative;
+    padding-left: 2rem;
+}
+
+.education-box .education-content::before{
+    content: '';
+    position: absolute;
+
+    top: 0;
+    left: -1.1rem;
+
+    width: 2rem;
+    height: 2rem;
+    background: rgb(220, 157, 30);
+    border-radius: 100%;
+
+}
+
+
+
+
+.education-content .content{
+    position: relative;
+    padding: 1.5rem;
+
+    border: 0.5rem solid yellowgreen;
+    border-radius: 3rem;
+
+    margin-bottom: 2rem;
+
+    overflow:hidden;
+
+    z-index: 1;
+}
+
+.education-content .content::before{
+    content: '';
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 100%;
+
+    background: yellowgreen;
+
+
+    z-index: -1;
+
+    transition: 1.5s ease;
+}
+
+.education-content .content:hover::before{
+    width: 100%;
+}
+
+
+
+
+.education-content .content .book{
+    font-size: 1.5rem;
+    color: yellowgreen;
+
+    padding-bottom: 0.5rem;
+}
+
+.education-content .content .book i{
+    padding-right: 0.5rem;
+}
+
+
+.education-content .content h3{
+    font-size: 2rem;
+
+}
+
+.education-content .content p{
+    font-size: 1.6rem;
+    padding-top: 0.5rem;
+}
+.learning-corner h2{
+
+    padding-top: 15rem;
+
+    font-size: 0.5rem;
+
+}
+.footer {
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+}
+/* ============float button========== */
+
+/**
+ * Boost Source: https://arcboosts.com/boosts/46/chatgpt-embed-in-all-page#code_block
+ */
+
+ #containerChatbot{
+    position: fixed;
+    z-index: 999;
+    margin-top: 250px;
+    top: 0;
+      background-color: #202123;
+    right: -2px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 
+              0px 6px 12px rgba(0, 0, 0, 0.2), 
+              0px 10px 20px rgba(0, 0, 0, 0.2);
+  
+  }
+  
+  #closeChatbot{
+    position: absolute;
+    right: 5px;
+    top:100px;
+    z-index: 10;
+    padding: 10px;
+    height: 50px;
+    background-color: #202123;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    border: 1px solid whitesmoke;
+    border-right: unset;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+  
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 
+              0px 6px 12px rgba(0, 0, 0, 0.2), 
+              0px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  #openChatbot{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    background-color: #202123;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+  }
+  #openChatbot:hover, #closeChatbot:hover{
+    cursor: pointer;
+  }
+  
+  .hide{
+    display: none!important;
+  }

@@ -1,0 +1,156 @@
+{% load static %}
+{% include "cusnav.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Website</title>
+
+    <!-- CSS -->
+    <link href={% static 'style/Stylesquizog.css' %} rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="back-bg-black">
+
+    <video autoplay muted loop id="bg-video">
+        <source src="videos/9665235-hd_1920_1080_25fps.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="video-overlay"></div>
+
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg navbar-bg-grey">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <span class="logo-text">Financ<span class="logo-letter">E</span>d</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#learn">Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#social">Social</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link cus-btn" href="#login">Login</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <div class="card custom-card">
+
+                    <div class="card-header" id="quiz-header">
+                        Question 1
+                    </div>
+                    <div class="card-body" id="quiz-container">
+                        <p>
+                            Imagine you had ₹100 in a savings account with an interest rate of 2% per year. After 5 years,
+                            how much would you have in the account if you left the money to grow?
+                        </p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="quizOption" id="optionA" value="A">
+                            <label class="form-check-label" for="optionA">
+                                A) Exactly ₹102
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="quizOption" id="optionB" value="B">
+                            <label class="form-check-label" for="optionB">
+                                B) More than ₹102
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="quizOption" id="optionC" value="C">
+                            <label class="form-check-label" for="optionC">
+                                C) Less than ₹102
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="card-footer">
+
+                        <div class="btn-box">
+                            <a href="HQ-Test/HomeQuiz-test/index.html" class="cus-btn">Let's Go</a>
+                        </div>
+
+
+                    </div> -->
+
+
+
+                    <!-- <div class="card-footer">
+                        <div class="progress" style="width: 70%;">
+                            <div class="progress-bar" role="progressbar" style="width: 0%; background-color: yellowgreen;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="btn-box">
+                            <a href="HQ-Test/HomeQuiz-test/index.html" class="cus-btn disabled" id="letsGoBtn">Let's Go</a>
+                        </div>
+                    </div> -->
+
+                    
+<!-- 
+                    <div class="card-footer" id="cardFooter">
+                        <div class="progress" style="width: 70%;">
+                            <div class="progress-bar" role="progressbar" style="width: 0%; background-color: yellowgreen;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="btn-box" id="btnFooter" style="display: none;">
+                            <a href="HQ-Test/HomeQuiz-test/index.html" class="cus-btn disabled" id="letsGoBtn">Let's Go</a>
+                        </div>
+                    </div> -->
+
+
+
+
+
+                    <div class="card-footer" id="cardFooter">
+
+                        <div class="progress-wrapper" id="progressfooter" style="display: block;">
+                            <div class="progress" style="width: 100%;">
+                                <div class="progress-bar" role="progressbar" style="width: 0%; background-color: yellowgreen;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
+                        <div class="btn-box" id="btnFooter" style="display: none;">
+                            <a href="HQ-Test/HomeQuiz-test/index.html" class="cus-btn disabled" id="letsGoBtn">Learn More with us!</a>
+                        </div>
+                    </div>
+                    
+                    
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src={% static 'style/Appquizog.js' %}></script>
+</body>
+</html>

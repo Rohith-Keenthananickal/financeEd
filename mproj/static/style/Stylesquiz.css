@@ -1,0 +1,246 @@
+/* General Styles */
+body.back-bg-black {
+    background-color: rgb(0, 0, 0);
+    background-size: cover;
+    background-position: inherit;
+    background-repeat: no-repeat; 
+}
+
+#bg-video {
+    position: fixed;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 15, 14, 0.075); /* Adjust opacity and color as needed */
+    z-index: -1; /* Ensure the overlay stays behind other content */
+}
+
+/* Style for the logo text */
+.logo-text {
+    color: #fff; /* Set text color */
+    font-size: 3rem; /* Set font size */
+    font-weight: 500;
+}
+
+/* Style for the letter 'E' */
+.logo-letter {
+    color: yellowgreen; /* Set color for the letter 'E' */
+}
+
+/* Center the Quiz Container */
+.container {
+    margin-top: 5rem;
+}
+
+/* Style for the Quiz Card */
+.custom-card.card {
+    background: rgba(8, 7, 7, 0.355);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 yellowgreen;
+    transition: 0.8s ease;
+    width: 100%;
+}
+
+.custom-card.card:hover {
+    box-shadow: 0 18px 26px 0 gold;
+    background: rgba(24, 22, 22, 0.516);
+}
+
+.card-header {
+    color: rgb(162, 238, 11);
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.8s;
+}
+
+.card-header:hover {
+    color: gold;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.custom-card .card-body {
+    backdrop-filter: blur(2px);
+    background-color: rgba(128, 128, 128, 0);
+    color: rgb(203, 225, 204);
+    font-size: 2rem;
+    text-align: center;
+    border-radius: 15px;
+}
+
+/* Center the Questions */
+.form-group {
+    text-align: center;
+}
+
+/* Style for the Submit Button */
+.card-footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Custom Button Styles */
+.btn-box {
+    margin: 2rem 0 4rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-box .cus-btn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 15rem;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.297);
+    border: .2rem solid yellowgreen;
+    border-radius: 0.9rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    color: whitesmoke;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.btn-box .cus-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: yellowgreen;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.btn-box .cus-btn:hover::before {
+    width: 100%;
+}
+
+/* Navbar Styles */
+.navbar.navbar-bg-grey {
+    background-color: rgba(192, 192, 192, 0.008);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.navbar-bg-grey .navbar-nav .nav-link {
+    color: #fff; /* Change text color */
+    font-size: 1.5rem; /* Change text size */
+    margin-right: 22px;
+    transition: 0.4s ease-in-out;
+}
+
+.navbar.navbar-bg-grey .navbar-nav .nav-link:hover {
+    font-size: 1.7rem;
+    color: yellowgreen; /* Change text color on hover */
+}
+
+.navbar.navbar-bg-grey .navbar-nav .cus-btn {
+    background-color: transparent; /* Remove background color */
+    border: 0.2rem solid yellowgreen; /* Add border */
+    color: yellowgreen; /* Change text color */
+    font-size: 1.5rem; /* Change text size */
+    border-radius: 1rem;
+}
+
+.navbar.navbar-bg-grey .navbar-nav .cus-btn:hover {
+    background-color: yellowgreen; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+}
+
+/*searchbar*/
+
+/* Style for the search input */
+.navbar-bg-grey .form-control {
+    border: 2.5px solid yellowgreen;
+    background: #2c0c0c7c;
+    border-radius: 1rem 0rem 0rem 1rem;
+    transition: 0.4s ease-in-out;
+}
+
+.navbar-bg-grey .form-control:hover {
+    border: 3px solid gold;
+    background: #2c0c0c30;
+}
+
+/* Style for the search button */
+.navbar-bg-grey .btn-outline-success {
+    color: yellowgreen;
+    border-color: yellowgreen;
+    border-radius: 0rem 1rem 1rem 0rem;
+}
+
+/* Hover effect for the search button */
+.navbar-bg-grey .btn-outline-success:hover {
+    background-color: yellowgreen;
+    color: #fff;
+}
+
+/* Custom styling for radio buttons */
+.form-check-input[type="radio"] {
+    display: none; /* Hide radio buttons */
+}
+
+/* Options styling */
+.form-check-label {
+    display: block;
+    padding: 15px; /* Add padding */
+    margin: 5px 0;
+    border: 2px solid transparent; /* Transparent border by default */
+    border-radius: 8px;
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.form-check-label:hover {
+    border-color: yellowgreen; /* Border color on hover */
+}
+
+
+.card-body p {
+    color: whitesmoke;
+    font-size: 2.3rem;
+    padding-bottom: 2.5rem; /* Set text color to grey */
+}
+
+
+
+
+
+
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align content horizontally */
+    justify-content: center; /* Center align content vertically */
+}
+
+.progress-wrapper {
+    width: 100%; /* Set width to 100% */
+}

@@ -1,0 +1,187 @@
+ {% extends "base.html" %} 
+{% block body %}
+{% include "cusnav.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/nav.css' %}">
+<style>
+  .cus-text{
+    padding: 10px;
+    font-size: 30px;
+    position: relative;
+    top:30px;
+    font-size:60px;
+    color: gold;
+  }
+  .cus-img{
+    width:200px;
+    height: 200px;
+    border-radius:50%;
+  }
+  .cus-img-circle{
+    width:200px;
+    height: 200px;
+    border-radius:50%;
+    border:10px solid chartreuse;
+    background-color: black;
+    position: relative;
+    top:10px;
+    left:90%;
+  }
+  .cus-img-circle1{
+    width:200px;
+    height: 200px;
+    border-radius:50%;
+    border:10px solid chartreuse;
+    background-color: black;
+    position: relative;
+    top:10px;
+    left:-50%;
+  }
+  .cus-img-circle2{
+    width:200px;
+    height: 200px;
+    border-radius:50%;
+    border:10px solid chartreuse;
+    background-color: black;
+    position: relative;
+    top:10px;
+    left:0%;
+  }
+  .cus-card{
+    border-radius: 30px;
+    margin-bottom: 30px;
+    background-color: rgb(31, 31, 31);
+    box-shadow:greenyellow 10px 10px 10px;
+  }
+@media (max-width: 768px) {
+  .cus-img-circle{
+    width:200px;
+    height: 200px;
+    border-radius:50%;
+    border:10px solid chartreuse;
+    background-color: black;
+    position: relative;
+    top:10px;
+    left:60%;
+  }
+  .cus-img-circle1{
+    width:200px;
+    height: 200px;
+    border-radius:50%;
+    border:10px solid chartreuse;
+    background-color: black;
+    position: relative;
+    top:10px;
+    left:-50%;
+  }
+}
+</style>
+<main>
+     <section class="section dashboard">
+      <div class="row">
+        <div class="col-12 col-xxl-12">
+          <div class="cus-card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-3">
+                  <img src="{% static 'images/book.png' %}" alt="" srcset="" class="cus-img">
+                </div>
+                <div class="col-8">
+                  <p class="cus-text">Story Mode</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      
+      
+      <div class="row">
+        <div class="col-12 col-xxl-12">
+          <div class="cus-card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <p class="cus-text">Listing Mode</p>
+                </div>
+                <div class="col-3">
+                  <img src="{% static 'images/headphone.png' %}" alt="" srcset="" class="cus-img-circle">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-xxl-12">
+          <div class="cus-card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <a href="{% url 'student_home' %}" class="btn btn-primary">Go to Another Page</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xxl-12">
+        <div class="cus-card">
+          <div class="card-body">
+             <div class="row">
+              <div class="col-3">
+                <img src="{% static 'images/quiz.png' %}" alt="" srcset="" class="cus-img-circle1">
+              </div>
+               <div class="col-8">
+               <p class="cus-text">Quiz</p>
+               </div>
+             </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-xxl-12">
+    <div class="cus-card">
+      <div class="card-body">
+         <div class="row">
+           <div class="col-8">
+           <p class="cus-text">Simulator</p>
+           </div>
+           <div class="col-3">
+            <img src="{% static 'images/simulator.png' %}" alt="" srcset="" class="cus-img-circle">
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-xxl-12">
+    <div class="cus-card">
+      <div class="card-body">
+         <div class="row">
+           <div class="col-4">
+           <p class="cus-text">Progress</p>
+           </div>
+           <div class="col-3">
+            <img src="{% static 'images/progreess.png' %}" alt="" srcset="" class="cus-img-circle2">
+          </div>
+          <div class="col-4">
+            <p class="cus-text">Progress</p>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </section>
+
+  </main><!-- End #main -->
+  {% include "footer.html" %}
+{% endblock body %}

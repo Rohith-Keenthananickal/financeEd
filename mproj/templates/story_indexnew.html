@@ -1,0 +1,248 @@
+{% load static %}
+ {% include "cusnav.html" %} 
+ {% include "footer.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Blog</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href={% static 'style/story_style.css' %}>
+</head>
+<body>
+
+    <video autoplay muted loop id="bg-video">
+        <source src="video/5485148-hd_1280_720_25fps.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="video-overlay"></div>
+
+    {% comment %} {% comment %} <nav>
+        <ul class="sidebar">
+            <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="26"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"  fill="#ffffff"/></svg></a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Learn</a></li>
+            <li><a href="#">Social</a></li>
+            <li class="signin"><a href="#">Login</a></li>
+        </ul>
+    
+        <ul>
+            <li><a class="navbar-brand" href="#">
+                <span class="logo-text">Financ<span class="logo-letter">E</span>d</span>
+                </a>
+            </li>
+            
+            <li class="hideOnMobile"><a href="#">Home</a></li>
+            <li class="hideOnMobile"><a href="#">About</a></li>
+            <li class="hideOnMobile"><a href="#">Learn</a></li>
+            <li class="hideOnMobile"><a href="#">Social</a></li>
+            <li class="signin" class="hideOnMobile"><a href="#">Login</a></li>
+    
+            <li onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" fill="#ffffff"/></svg></a></li>
+        </ul>
+    </nav>  {% endcomment %}
+
+    <div class="module-title">
+        <h1>Module 1 <br>Money Management Basics</h1>
+    </div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-11 offset-md-1">
+            <div class="story-body">
+                <h3>Chapter 1: Introduction to Money and its importance</h3>
+                <h4 class="animated-text">"Maya's Journey Through Time: An Adventure in the Marketplace"</h4>
+                <p>In a small village, there lived a curious girl named Maya. One day, while exploring a
+                    nearby forest, she stumbled upon a hidden cave. Inside, she found a mysterious object
+                    that shimmered with an otherworldly light. As she touched it, she felt a strange
+                    sensation and was suddenly surrounded by a bright light</p>
+                <img src={% static "images_st/1.pngtransp.png" %} alt="Image 1">
+                <p>Intrigued and a little scared, Maya walked around the marketplace, marveling at the
+                    sights and sounds around her. She saw people trading goods directly, using items like
+                    cloth, grains, and pottery instead of coins and notes, much like the time in her village.
+                    <br><br>
+                <img src={% static "images_st/2.pngtransp.png" %} alt="Image 2">
+                    As Maya wandered through the marketplace, she felt a pang of hunger and spotted a
+                    vendor selling fruits. She approached the vendor, a kind-looking woman with a warm
+                    smile. Unsure of how to communicate, Maya resorted to gestures, pointing to the red
+                    apple and making motions of eating.</p>
+                <img src={% static "images_st/3.pngtransp.png" %} alt="Image 2">
+                <p>The vendor, though initially puzzled by Maya's gestures, seemed to understand. She
+                    nodded and held up a few apples, indicating Maya could have one. Maya searched
+                    through her pockets, finding an old coin she had saved for chocolate, and showed it to
+                    the vendor. The vendor's eyes widened in surprise.
+                    "I've never seen something like this before," the vendor said, examining the coin closely.
+                    "But it looks valuable! I suppose I can trade you an apple for it."
+                    <br><br>
+                    Maya nodded eagerly and handed over the coin in exchange for the apple. She took a
+                    bite, and to her surprise, the apple was magical. As soon as she finished it, she felt
+                    herself being pulled back through time.</p>
+                <img src={% static "images_st/Untitled design croped (4).png" %} alt="Image 3">
+                <p>As Maya returned to her own time, she marveled at the adventure she had just
+                    experienced. She realized that the apple had been a magical portal, allowing her to
+                    travel back in time and learn valuable lessons about the past civilizations</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="conclusion-box ">
+                <h3>Conclusion</h3>
+                <ul>
+                    <li><strong>Money:</strong> A universally accepted medium of exchange, like the magical coin Maya traded, making transactions easier.</li>
+                    <li><strong>Currency:</strong> Physical or digital tokens issued by authorities for transactions, similar to the coin used in Maya's time travel adventure.</li>
+                    <li><strong>Barter:</strong> Direct exchange of goods and services, seen in past Market place were people directly exchange goods like cloth, grains, and pottery or services.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="conclusion-box">
+                <h3>Fun Facts</h3>
+                <ul>
+                    <li><strong>Stone Age Shopping:</strong> Believe it or not, barter systems, like the one Maya witnessed, existed as far back as the Stone Age! People traded things they made or found, like tools, animal skins, and seashells.</li>
+                    <li><strong>Shell Yeah! Money:</strong> Some early cultures used shells, like cowrie shells, as a form of currency. These shells were even valued for their beauty and durability.</li>
+                    <li><strong>The Rise of Metal:</strong> Over time, metals like gold, silver, and copper became popular forms of currency. They were seen as valuable because they were rare, easy to transport, and difficult to counterfeit.</li>
+                    <li><strong>The Birth of Paper Money:</strong> Paper money first appeared in China around 700 AD. It was seen as a more convenient alternative to heavy metal coins.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="custom-card card">
+                <div class="card-header">
+                    Quiz 
+                </div>
+                <div class="card-body">
+                    <form id="quizForm">
+                        <div class="question-wrapper">
+                            <div class="form-group">
+                                <label for="q1">Q1: <b>What is the primary function of money?</b></label><br>
+                                <div class="form-check">
+                                    <input type="radio" id="q1a" name="q1" value="a" class="form-check-input">
+                                    <label for="q1a" class="form-check-label">a) Serving as a mode of transportation</label><br>
+                                    <input type="radio" id="q1b" name="q1" value="b" class="form-check-input">
+                                    <label for="q1b" class="form-check-label">b) Acting as a universally accepted medium of exchange</label><br>
+                                    <input type="radio" id="q1c" name="q1" value="c" class="form-check-input">
+                                    <label for="q1c" class="form-check-label">c) Functioning as a source of entertainment</label><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="form-group">
+                                <label for="q2">Q2: <b>What does currency represent in economic transactions?</b></label><br>
+                                <div class="form-check">
+                                    <input type="radio" id="q2a" name="q2" value="a" class="form-check-input">
+                                    <label for="q2a" class="form-check-label">a) A form of communication</label><br>
+                                    <input type="radio" id="q2b" name="q2" value="b" class="form-check-input">
+                                    <label for="q2b" class="form-check-label">b) A physical or digital representation of value</label><br>
+                                    <input type="radio" id="q2c" name="q2" value="c" class="form-check-input">
+                                    <label for="q2c" class="form-check-label">c) A type of musical instrument</label><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="form-group">
+                                <label for="q3">Q3: <b>What method of trade did Maya observe in the marketplace?</b></label><br>
+                                <div class="form-check">
+                                    <input type="radio" id="q3a" name="q3" value="a" class="form-check-input">
+                                    <label for="q3a" class="form-check-label">a) Cryptocurrency transactions</label><br>
+                                    <input type="radio" id="q3b" name="q3" value="b" class="form-check-input">
+                                    <label for="q3b" class="form-check-label">b) Direct exchange of goods and services</label><br>
+                                    <input type="radio" id="q3c" name="q3" value="c" class="form-check-input">
+                                    <label for="q3c" class="form-check-label">c) Online auction bidding</label><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="form-group">
+                                <label for="q4">Q4:<b> What is currency in the marketplace?</b></label><br>
+                                <div class="form-check">
+                                    <input type="radio" id="q4a" name="q4" value="a" class="form-check-input">
+                                    <label for="q4a" class="form-check-label">a) Something people say to buy things</label><br>
+                                    <input type="radio" id="q4b" name="q4" value="b" class="form-check-input">
+                                    <label for="q4b" class="form-check-label">b) Money that governments make, like coins and bills</label><br>
+                                    <input type="radio" id="q4c" name="q4" value="c" class="form-check-input">
+                                    <label for="q4c" class="form-check-label">c) Shiny rocks used for making jewelry</label><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-wrapper">
+                            <div class="form-group">
+                                <label for="q5">Q5:<b> What did Maya learn about historical economies during her adventure?</b></label><br>
+                                <div class="form-check">
+                                    <input type="radio" id="q5a" name="q5" value="a" class="form-check-input">
+                                    <label for="q5a" class="form-check-label">a) They heavily relied on advanced technology</label><br>
+                                    <input type="radio" id="q5b" name="q5" value="b" class="form-check-input">
+                                    <label for="q5b" class="form-check-label">b) They often utilized complex financial instruments</label><br>
+                                    <input type="radio" id="q5c" name="q5" value="c" class="form-check-input">
+                                    <label for="q5c" class="form-check-label">c) They frequently engaged in barter for goods and services</label><br>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-footer">
+                    <div class="btn-box">
+                        <button class="cus-btn" onclick="submitQuiz()">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src={% static 'style/story_scriipt.js' %}></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

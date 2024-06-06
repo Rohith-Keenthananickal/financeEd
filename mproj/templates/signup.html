@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>FinancEd:Lets Begin!</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/signUp.css' %}">
+
+</head>
+<body>
+    <main>
+        <div class="box">
+            <div class="inner-box">
+                <div class="forms-wrap">
+                    <form autocomplete="off" class="sign-in-form" method="post">
+                        {% csrf_token %}
+                        <div class="logo">
+                        <div class="logo">
+                           <img src="{% static 'images/logotransp.png' %}" alt="LogoStuff">
+                        </div>
+                           
+                           <!-- <h4>Financ<span class="highlight">E</span>d</h4> -->
+                        </div>
+                        <div class="heading">
+                            <h2>Welcome Back!</h2>
+                            <h6>Not registered yet?</h6>
+                            <a href= {% url "signin" %}>Sign up</a>
+                        </div>
+                        <div class="actual-form">
+                            <div class="input-wrap">
+                                <input  type="text" minlength="4" autocomplete="off" required class="input-field" name="username">
+                                <label>Username/Email</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="password" minlength="2" autocomplete="off" required class="input-field" name="password">
+                                <label>Password</label>
+                            </div>
+                            <button type="submit"  class="sign-btn" name="login">Sign In</button>
+                            <p class="text">
+                                Forgot your password?
+                                <a href="#">Get Help</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="carousel">
+                    <div class="images-wrapper">
+                        <img src="{% static 'images/logotransp.png' %}" class="image img-1 show" alt="">
+                        <img src="{% static 'images/contentsList(1).png' %}" class="image img-2" alt="">
+                        <img src="{% static 'images/FinanceImg.png' %}" class="image img-3" alt="">
+                  </div>
+
+                    <div class="text-slider">
+                        <div class="text-wrap">
+                            <div class="text-group">
+                                <h2>"Basics Made Simple!"<h2>
+                                <h2>"Explore realms of learning!"</h2>
+                                <h2>"Your all in one platform"</h2>
+                            </div>
+                        </div>
+
+                        <div class="bullets">
+                            <span class="active" data-value="1"></span>
+                            <span data-value="2"></span>
+                            <span data-value="3"></span> 
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+ <!--js-->
+ <script src={% static 'style/main.js' %}></script>
+</body>
+</html>

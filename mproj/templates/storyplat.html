@@ -1,0 +1,270 @@
+{% comment %} {% include "cusnav.html" %} {% endcomment %}
+{% load static %}
+{% include "footer.html" %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Mode Modules</title>
+    <link rel="stylesheet" href={% static "style/Styles.css" %}> <!-- Link to your CSS file -->
+</head>
+<body class="back-bg-black">
+    <nav>
+        <ul class="sidebar">
+            <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="26"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"  fill="#ffffff"/></svg></a></li>
+            <li><a href={% url "index" %}>Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Learn</a></li>
+            <li><a href="#">Social</a></li>
+            <li class="signin"><a href="#">Login</a></li>
+        </ul>
+    
+        <ul>
+            <li><a class="navbar-brand" href="#">
+                <span class="logo-text">Financ<span class="logo-letter">E</span>d</span>
+                </a>
+            </li>
+            
+            <li class="hideOnMobile"><a href={% url "index" %}>Home</a></li>
+            <li class="hideOnMobile"><a href="#">About</a></li>
+            <li class="hideOnMobile"><a href="#">Learn</a></li>
+            <li class="hideOnMobile"><a href="#">Social</a></li>
+            <li class="signin" class="hideOnMobile"><a href="#">Login</a></li>
+    
+            <li onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" fill="#ffffff"/></svg></a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Navbar -->
+    {% comment %} <nav class="navbar navbar-expand-lg navbar-light navbar-bg-grey">
+        <div class="container-fluid">
+            <a class="navbar-brand logo-text" href="#">Story Mode</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="cus-btn btn" href="#">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> {% endcomment %}
+
+    <!-- Story Mode Modules -->
+    <div class="container">
+         <!-- Module 1 -->
+         <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 1: Money Management Basics*
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Introduction to money and its importance
+                            </li>
+                            <li>Money Matters: Exploring the Purpose, Value, and Types of Money</li>
+                            <li>Basics of Budgeting, Savings and Needs vs. Wants
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div> 
+    
+                </div>
+            </div>
+        </div>
+         <!-- Module 2 -->
+         <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 2: Banking and Savings*</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Basics of banking services and opening a bank account</li>
+                            <li>Importance of saving and setting savings goals</li>
+                            <li>Understanding Interest Rates and Deposit Options</li>
+                        </ul>
+                    </div>
+                 
+                        <div class="btn-box">
+                            <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                        </div>
+                  
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 3: Understanding Credit</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Introduction to credit cards and responsible usage</li>
+                            <li>Understanding credit risk and credit scores</li>
+                            <li>Basics of Bank Loans and repayment strategies</li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+        <!-- Module 4 -->
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 4: Introduction to Investments</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Basics of investing and different investment options</li>
+                            <li>Understanding risks and benefits of investments</li>
+                            <li>Introduction to terms like large cap, small cap, and multi cap</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Module 5 -->
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 5: Insurance Basics</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Purpose and types of insurance</li>
+                            <li>Understanding premiums, coverage, and risk management</li>
+                            <li>Understanding insurance as an investment option</li>
+                        </ul>
+                    </div>
+                    <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Module 6 -->
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 6: Real Estate and Taxes Basics</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Understanding real estate and renting vs buying</li>
+                            <li>Basics of property taxes and their importance</li>
+                            <li>Understanding tax terms like GST, capital gains tax, and tax incentives</li>
+                        </ul>
+                    </div>
+                    <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Module 7 -->
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 7: Financial Markets</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Introduction to financial markets and their role</li>
+                            <li>Basics of the stock market and investment strategies</li>
+                            <li>Understanding terms like BSE, SEBI, insider trading, and swing trading</li>
+                        </ul>
+                    </div>
+                     <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Module 8 -->
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 8: Global Financial Awareness</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Understanding the international economy and its impact</li>
+                            <li>Importance of global financial literacy</li>
+                            <li>Understanding foreign currency and its implications</li>
+                        </ul>
+                    </div>
+                    <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Module 9 -->
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 9: Financial Wellness</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Importance of financial health and tips for achieving financial wellness</li>
+                            <li>Seeking professional help for financial guidance</li>
+                            <li>Understanding terms like balance sheet, income, and liability vs assets</li>
+                        </ul>
+                    </div>
+                    <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Module 10 -->
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Half the width of the webpage -->
+                <div class="custom-card card">
+                    <div class="card-header">Module 10: Review and Conclusion</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Reviewing key concepts covered in the course</li>
+                            <li>Reflecting on personal financial goals and achievements</li>
+                        </ul>
+                    </div>
+                    <div class="btn-box">
+                        <a href={% url "story" %} class="cus-btn">Let's Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

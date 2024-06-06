@@ -1,0 +1,478 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    overflow-x: hidden;
+}
+.nav-link{
+    font-size: 20px;
+    color: white !important;
+}
+.brand{
+    color:rgb(4, 154, 4);
+    font-weight: 600;
+}
+.banner{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/digiIndianRupee.jpg');
+    background-position-x: top;
+    background-size:cover;
+}
+.banner .banner-content{
+    position: relative;
+    top:150px;
+    left:80px;
+    width: 500px;
+    height: auto;
+    /* background-color: aquamarine; */
+}
+.banner-content h2{
+    background: -webkit-linear-gradient(rgb(255, 165, 9),rgb(255, 238, 0));
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    color: white !important;
+    font-size:60px;
+}
+.banner-content h1{
+    color: white !important;
+    font-size:80px;
+}
+.banner-content h3{
+    color: white !important;
+    font-size:30px;
+}
+.btn-box{
+    margin: 2rem 0 4rem;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 30.5rem;
+    height: 3rem;
+    box-shadow: 0 0 1 yellowgreen; /* Yellow-green box shadow */
+    transition: box-shadow ease; /* Transition for box shadow */
+}
+
+.btn-box .cus-btn:hover {
+    box-shadow: 0 0 1rem gold; /* Change box shadow to gold on hover */
+    transition: 1.5s;
+}
+
+
+.btn-box .cus-btn{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+
+    width: 15rem;
+    height: 100%;
+
+    background: black;
+
+    border: .2rem solid yellowgreen;
+
+    border-radius: 0.9rem;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+
+    color: whitesmoke;
+
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+.btn-box .cus-btn::before{
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 100%;
+
+    background: yellowgreen;
+
+    z-index: -1;
+
+    transition: 0.5s;
+
+}
+
+.btn-box .cus-btn:hover::before{
+    width: 100%;
+}
+
+/* ==============about=========== */
+main{
+    background-color: black;
+}
+.about-us{
+    justify-content: center;
+}
+.about-us h1{
+    font-size: 80px;
+    color: white;
+}
+.about-us p{
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    place-content: center;
+    /* background-color: aqua; */
+    color: white;
+}
+.about-us ul {
+    transform: translateX(25%);
+}
+.about-us ul li{
+    align-items: center;
+    justify-content: center;
+    color: white !important;
+    font-size: 30px;
+}
+.btn-read{
+        transform: translateX(70%);
+}
+
+/* =============education=========== */
+
+.heading .toGold {
+    font-size: 5rem;
+    color: white;
+    transition: 1.5s ease;
+}
+
+.heading .toGold:hover {
+    color: gold;
+}
+
+.education{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: auto;
+    padding-bottom: 10px;
+    color: white;
+
+}
+
+
+.education .education-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+
+.education-row .education-column{
+    flex: 1 1 6rem;
+}
+
+.education-column .title{
+    font-size: 2rem;
+
+    margin: 0 0 1.5rem 2rem;
+}
+
+.education-column .education-box{
+    border-left: .2rem solid yellowgreen ;
+}
+
+
+
+.education-box .education-content{
+    position: relative;
+    padding-left: 2rem;
+}
+
+.education-box .education-content::before{
+    content: '';
+    position: absolute;
+
+    top: 0;
+    left: -1.1rem;
+
+    width: 2rem;
+    height: 2rem;
+    background: rgb(220, 157, 30);
+    border-radius: 100%;
+
+}
+
+
+
+
+.education-content .content{
+    position: relative;
+    padding: 1.5rem;
+
+    border: 0.5rem solid yellowgreen;
+    border-radius: 3rem;
+
+    margin-bottom: 2rem;
+
+    overflow:hidden;
+
+    z-index: 1;
+}
+
+.education-content .content::before{
+    content: '';
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 100%;
+
+    background: yellowgreen;
+
+
+    z-index: -1;
+
+    transition: 1.5s ease;
+}
+
+.education-content .content:hover::before{
+    width: 100%;
+}
+
+
+
+
+.education-content .content .book{
+    font-size: 1.5rem;
+    color: yellowgreen;
+
+    padding-bottom: 0.5rem;
+}
+
+.education-content .content .book i{
+    padding-right: 0.5rem;
+}
+
+
+.education-content .content h3{
+    font-size: 2rem;
+
+}
+
+.education-content .content p{
+    font-size: 1.6rem;
+    padding-top: 0.5rem;
+}
+.learning-corner h2{
+
+    padding-top: 15rem;
+
+    font-size: 0.5rem;
+
+}
+.container {
+    position: relative;
+    max-width: 100%; 
+    margin: 5rem auto;
+    padding: 5rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container .card {
+    position: relative;
+    width: 22rem;
+    height: 30rem; 
+    background: black;
+    margin: 5rem; 
+    border-radius: 5rem;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 2.5rem whitesmoke;
+    transition: 0.4s ease-in-out;
+}
+
+.container:hover .card {
+    filter: blur(0.05rem); 
+    transform: scale(0.9);
+    opacity: 0.8;
+
+    box-shadow: 0 1.5rem 2.5rem yellowgreen;
+}
+
+.container .card:hover {
+    filter: blur(0);
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+
+
+
+
+
+
+container .card:hover {
+    height: 35rem; /* Increase the height on hover */
+}
+
+
+
+
+.container .card .circle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    clip-path: circle(11rem at center 0); 
+    text-align: center;
+}
+
+.container .card .circle h2 {
+    color: whitesmoke;
+    font-size: 3rem; 
+    padding: 2rem;
+}
+
+
+.container .card .content {
+    position: absolute;
+    bottom: 1rem; 
+    padding: 0.1rem; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .card .content img {
+    max-width: 100%; 
+    max-height: 70%; 
+    margin-bottom: 1rem;
+
+
+}
+
+
+
+.container .card .content p {
+    color: whitesmoke;
+    font-size: 1.6rem; 
+    opacity: 0;
+}
+
+.container .card .content a {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: #000;
+    color: #fff;
+    border-radius: 4rem;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    font-size: 1.6rem;
+
+    transition: 0.3s ease;
+}
+
+.container .card .content a:hover {
+
+    transform: scale(1.3);
+}
+
+
+.container .card:nth-child(1) .circle,
+.container .card:nth-child(1) .content a {
+    background: #31bef1de;
+}
+
+.container .card:nth-child(2) .circle,
+.container .card:nth-child(2) .content a {
+    background: #ff6962;
+}
+
+.container .card:nth-child(3) .circle,
+.container .card:nth-child(3) .content a {
+    background: #b042ff;
+}
+.learn {
+    background-color: blue;
+}
+.float-button{
+    width:80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+    position:fixed;
+    background-color: chartreuse;
+    top:80%;
+    left:90%;
+    z-index:30;
+}
+/* =============Media Query============ */
+
+
+@media screen and (max-width: 768px){
+    .navbar img{
+        display: none;
+    }
+    .nav-link:hover{
+        background-color: rgb(31, 30, 30);
+    }    
+    .banner .banner-content{
+        position: relative;
+        top:150px;
+        left:80px;
+        width: 500px;
+        height: auto;
+        /* background-color: aquamarine; */
+    }
+    .banner{
+        height: 60vh;
+    }
+    .banner-content h2{
+        background: -webkit-linear-gradient(rgb(255, 165, 9),rgb(255, 238, 0));
+        -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+        color: white !important;
+        font-size:30px;
+    }
+    .banner-content h1{
+        color: white !important;
+        font-size:40px;
+    }
+    .banner-content h3{
+        color: white !important;
+        font-size:15px;
+    }
+    .about-us h1{
+        font-size: 33px;
+
+    }
+    .about-us p{
+        font-size: 20px !important;
+    }
+    .about-us ul {
+        transform: translateX(10%);
+    }
+    .about-us ul li {
+        font-size:20px;
+    }
+    .btn-read{
+        transform: translateX(20%);
+    }
+    .float-button{
+        left:80%;
+    }
+}

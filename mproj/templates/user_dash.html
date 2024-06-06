@@ -1,0 +1,206 @@
+{% include "base.html" %}
+{% include "cusnav.html" %}
+
+{% load static %}
+
+
+{% block body  %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<style>
+    .cus-text{
+      padding: 10px;
+      font-size: 30px;
+      position: relative;
+      top:30px;
+      font-size:60px;
+      color: gold;
+    }
+    .cus-img{
+      width:200px;
+      height: 200px;
+      border-radius:50%;
+    }
+    .cus-img-circle{
+      width:200px;
+      height: 200px;
+      border-radius:50%;
+      border:10px solid chartreuse;
+      background-color: black;
+      position: relative;
+      top:10px;
+      left:90%;
+    }
+    .cus-img-circle1{
+      width:200px;
+      height: 200px;
+      border-radius:50%;
+      border:10px solid chartreuse;
+      background-color: black;
+      position: relative;
+      top:10px;
+      left:-50%;
+    }
+    .cus-img-circle2{
+      width:200px;
+      height: 200px;
+      border-radius:50%;
+      border:10px solid chartreuse;
+      background-color: black;
+      position: relative;
+      top:10px;
+      left:0%;
+    }
+    .cus-card{
+      border-radius: 30px;
+      margin-bottom: 30px;
+      background-color: rgb(31, 31, 31);
+      box-shadow:greenyellow 10px 10px 10px;
+    }
+  @media (max-width: 768px) {
+    .cus-img-circle{
+      width:200px;
+      height: 200px;
+      border-radius:50%;
+      border:10px solid chartreuse;
+      background-color: black;
+      position: relative;
+      top:10px;
+      left:60%;
+    }
+    .cus-img-circle1{
+      width:200px;
+      height: 200px;
+      border-radius:50%;
+      border:10px solid chartreuse;
+      background-color: black;
+      position: relative;
+      top:10px;
+      left:-50%;
+    }
+  }
+  </style>
+
+<div class="container mt-5">
+    <br>
+<br>
+<br>
+<br>
+<br>
+<main>
+    <section class="section dashboard">
+     <div class="row">
+       <div class="col-12 col-xxl-12">
+        <a href={% url 'storyplat' %}>
+         <div class="cus-card">
+           <div class="card-body">
+             <div class="row">
+               <div class="col-3">
+                 <img src="{% static 'images/book.png' %}" alt="" srcset="" class="cus-img">
+               </div>
+               <div class="col-8">
+                 <p class="cus-text">Story Mode</p>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div> 
+     <br>
+     <br>
+      <br>
+     
+    <div class="row">
+        <div class="col-12 col-xxl-12">
+            <a href={% url 'listen' %}>
+                <div class="cus-card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="cus-text">Listening Mode</p>
+                            </div>
+                            <div class="col-3">
+                                <img src="{% static 'images/headphone.png' %}" alt="" srcset="" class="cus-img-circle">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col-12 col-xxl-12">
+          <a href={% url 'quiz' %}>
+              <div class="cus-card">
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-8">
+                              <p class="cus-text">Quiz</p>
+                          </div>
+                          <div class="col-3">
+                              <img src="{% static 'images/Shareable-Quizzes-In-Online-Training-7-Reasons.jpg' %}" alt="" srcset="" class="cus-img-circle">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </a>
+      </div>
+    {% comment %} <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card rounded-3 mb-4">
+                <div class="card-body"> {% endcomment %}
+                    
+                    
+{% comment %} 
+                    <h5 class="card-title">Story Mode</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+                    <a href= {% url "storyplat" %} class="btn btn-primary">Go to Story Mode</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card rounded-3 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Listening Mode</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+                    <a href={% url "listen" %} class="btn btn-primary">Go to Listening Mode</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card rounded-3 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Simulation</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+                    <a href="#" class="btn btn-primary">Go to Simulation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card rounded-3 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Social Platform</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+                    <a href="#" class="btn btn-primary">Go to Social Platform</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+
+
+{% endblock body %}

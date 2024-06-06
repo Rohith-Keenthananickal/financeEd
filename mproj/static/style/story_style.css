@@ -1,0 +1,527 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+}
+
+
+
+#bg-video {
+    position: fixed;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 15, 14, 0.075); /* Adjust opacity and color as needed */
+    z-index: -1; /* Ensure the overlay stays behind other content */
+}
+
+
+.logo-text {
+    color: #fff;
+    font-size: 2.3rem;
+    font-weight: 300;
+}
+
+.logo-letter {
+    color: yellowgreen;
+}
+
+
+
+nav{
+    background-color: transparent;
+    box-shadow: 3px 3px 5px greenyellow;
+    padding-top: 2px;
+
+}
+
+nav ul{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav li{
+    height: 50px;
+}
+
+nav a{
+    font-size: 1.8rem;
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: aliceblue;
+    transition: ease-in-out 0.5s;
+}
+
+nav a:hover{
+    background-color:transparent;
+    font-size: 1.5em; 
+    color: yellowgreen;
+    text-decoration: none;
+}
+
+nav .signin{
+    background-color: transparent;
+    border: 3px solid aliceblue;
+    border-radius: 35px;
+    display: inline-block;
+    transition: 1.5s;
+}
+
+nav .signin:hover{
+    border: 3px solid greenyellow;
+}
+
+nav li:first-child{
+    margin-right: auto;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.26);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px yellowgreen;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+
+    
+
+}
+
+
+.sidebar li{
+    width: 100%;
+}
+
+.sidebar a{
+    width: 100%;
+}
+
+@media(max-width:800px){
+    .hideOnMobile{
+        display: none;
+    }
+}
+
+@media(max-width: 400px){
+    .sidebar{
+        width: 50%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.module-title h1{
+    text-align: center;
+    margin-top: 50px; /* Adjust margin as needed */
+    font-size: 3.5rem; /* Adjust font size as needed */
+}
+
+
+.story-body h3{
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 3.5rem;
+
+    transition: ease-in-out 0.3s;
+}
+.story-body h3:hover{
+    color: yellowgreen;
+}
+
+
+.story-body h4{
+    text-align: center;
+    margin: 10px;
+    margin-top: 8rem;
+
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 2.8rem;
+
+    transition: ease-in-out 0.3s;
+}
+
+
+
+
+
+
+@keyframes color-flow {
+    0% {
+        color: rgb(250, 250, 248);
+    }
+    20% {
+        color: yellowgreen;
+    }
+    40% {
+        color: yellow;
+    }
+    60% {
+        color: rgb(218, 98, 98);
+    }
+    80% {
+        color: gold;
+    }
+    100% {
+        color: whitesmoke;
+    }
+}
+
+.animated-text {
+    font-size: 24px;
+    font-weight: 400;
+    animation: color-flow 18s linear infinite;
+}
+
+
+
+
+
+
+
+
+
+
+.story-body {
+    margin: 40px;
+    border: 3px solid yellowgreen;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.story-body p {
+    padding-top:2rem;
+    padding-bottom: 2rem;
+    font-size: 1.6rem;
+}
+
+.story-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.story-body img:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+.conclusion-box {
+    border: 3px solid yellowgreen;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.conclusion-box h3 {
+    font-size: 3.5rem;
+    text-align: center;
+}
+
+.conclusion-box ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.conclusion-box li {
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+}
+
+.conclusion-box strong {
+    font-weight: bold;
+    transition: ease-in 0.3s;
+}
+.conclusion-box strong:hover {
+    color: yellowgreen;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Center the Quiz Container */
+.container {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+/* Style for the Quiz Card */
+.custom-card.card {
+    background: rgba(8, 7, 7, 0.355);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 yellowgreen;
+    transition: 0.8s ease;
+    width: 100%;
+}
+
+.custom-card.card:hover {
+    box-shadow: 0 18px 26px 0 rgb(9, 255, 0);
+    background: rgba(24, 22, 22, 0.516);
+}
+
+.card-header {
+    color: rgb(162, 238, 11);
+    font-size: 5rem;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.8s;
+}
+
+.card-header:hover {
+    color: gold;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.custom-card .card-body {
+    backdrop-filter: blur(2px);
+    background-color: rgba(128, 128, 128, 0);
+    color: rgb(203, 225, 204);
+    font-size: 2rem;
+    text-align: center;
+    border-radius: 15px;
+}
+
+/* Center the Questions */
+.form-group {
+    text-align: center;
+}
+
+/* Style for the Submit Button */
+.card-footer {
+    background-color: rgba(128, 128, 128, 0);
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Custom Button Styles */
+.btn-box {
+    margin: 2rem 0 4rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-box .cus-btn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 15rem;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.297);
+    border: .2rem solid yellowgreen;
+    border-radius: 0.9rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    color: whitesmoke;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.btn-box .cus-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: yellowgreen;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.btn-box .cus-btn:hover::before {
+    width: 100%;
+}
+
+/* Options styling */
+.form-check-label {
+    display: block;
+    padding: 15px; /* Add padding */
+    margin: 5px 0;
+    border: 2px solid transparent; /* Transparent border by default */
+    border-radius: 8px;
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.form-check-label:hover {
+    border-color: yellowgreen; /* Border color on hover */
+}
+
+
+
+/* Options styling */
+.form-check-label {
+    display: block;
+    padding: 15px; /* Add padding */
+    margin: 5px 0;
+    border: 2px solid transparent; /* Transparent border by default */
+    border-radius: 8px;
+    cursor: pointer; /* Add cursor pointer */
+}
+
+.form-check-label:hover {
+    border-color: yellowgreen; /* Border color on hover */
+}
+
+
+
+
+
+
+
+
+
+
+.question-wrapper {
+    border: 2px solid; /* Border for each question */
+
+    border-image: linear-gradient(45deg, grey,black) 1;
+
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px; /* Space between questions */
+    transition: ease-in-out 1.5s;
+}
+
+.question-wrapper:hover {
+    border: 2.5px solid;
+    border-image: linear-gradient(45deg, gold, green, yellow, green, purple) 1;
+    border-image-slice: 1;
+}
+
+.form-check-label {
+    display: block;
+    padding: 15px;
+    margin: 5px 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-check-label:hover {
+    border-color: yellowgreen;
+}
+
+.form-check-input {
+    position: absolute;
+    opacity: 0;
+}
+
+.form-check-label::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+    border: 2px solid #cccccc1b;
+    border-radius: 50%;
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+.form-check-input:checked + .form-check-label::before {
+    background-color: #007bff;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Cursor style */
+
+i{
+    position: absolute;
+    
+    width: 1px;
+    height: 1px;
+    
+    
+    background: linear-gradient(to right, gold, yellowgreen);
+    
+    pointer-events: none;
+    
+    animation: animate 3s linear forwards;
+    
+    }
+    
+    @keyframes animate {
+        0%{
+            opacity: 1;
+            transform: translate(0,0);
+        }
+    
+        100%{
+            opacity: 0;
+            transform: translate(var(--x), var(--y));
+        }
+        
+    }
+    
+    

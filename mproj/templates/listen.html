@@ -1,0 +1,28 @@
+{% load static %}
+{% include "footer.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listen</title>
+    <link rel="stylesheet" href="path/to/your/css/file.css">
+</head>
+<body>
+    {% include "base.html" %}
+    <br>
+    <br>
+    <br>
+    <br>    <div class="card">
+        <div class="card-header">
+            Module 1
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Chapter 1</h5>
+            <audio controls>
+                <source src={% static 'mp3/mod2cha.mp3' %} type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+    {% include "cusnav.html" %}
+</body>
+</html>
