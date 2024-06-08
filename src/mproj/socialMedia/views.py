@@ -4,7 +4,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from .models import Post, Reaction, PostReaction
+from .models import Follow, Post, Reaction, PostReaction
+from adminapp.models import User
 from django.db.models import F
 
 @login_required
@@ -32,9 +33,32 @@ def react_to_post(request, post_id):
 
     return JsonResponse({'error': 'Invalid request.'}, status=400)
 
-@login_required
+# @login_required
 def post_list(request):
     posts = Post.objects.all()
+    users = User.objects.all()
     user_reactions = PostReaction.objects.filter(user=request.user)
     reactions = {reaction.post_id: reaction.reaction_type for reaction in user_reactions}
-    return render(request, 'socialmedia.html', {'posts': posts, 'reactions': reactions})
+    for post in posts:
+        print (post)
+    return render(request, 'socialmedia.html', {'posts': posts, 'reactions': reactions, 'users': users})
+
+
+@login_required
+def follow_user(request, user_id):
+    if request.method == 'POST':
+        following = get_object_or_404(User, id=user_id)
+        follow, created = Follow.objects.get_or_create(follower=request.user, following=following)
+        if created:
+            return JsonResponse({'message': 'Successfully followed user.'})
+        else:
+            return JsonResponse({'message': 'You are already following this user.'})
+    return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+@login_required
+def unfollow_user(request, user_id):
+    if request.method == 'POST':
+        following = get_object_or_404(User, id=user_id)
+        Follow.objects.filter(follower=request.user, following=following).delete()
+        return JsonResponse({'message': 'Successfully unfollowed user.'})
+    return JsonResponse({'error': 'Invalid request method.'}, status=400)

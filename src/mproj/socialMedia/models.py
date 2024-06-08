@@ -1,6 +1,7 @@
 # models.py
 from django.db import models
 from django.conf import settings
+from adminapp.models import User
 
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -45,3 +46,12 @@ class Reaction(models.Model):
 
     def __str__(self):
         return f"{self.user.username} {self.reaction}d {self.post.id}"
+
+
+class Follow(models.Model):
+    follower = models.ForeignKey(User, related_name='following', on_delete=models.CASCADE)
+    following = models.ForeignKey(User, related_name='followers', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('follower', 'following')
