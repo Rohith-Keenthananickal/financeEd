@@ -1,6 +1,6 @@
 function sendReaction(postId, reaction) {
     $.ajax({
-        url: `/react/${postId}/`,
+        url: `/socialmedia/post/react/${postId}/`,
         type: 'POST',
         data: {
             'reaction': reaction,

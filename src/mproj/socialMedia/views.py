@@ -8,18 +8,27 @@ from .models import Follow, Post, Reaction, PostReaction
 from adminapp.models import User
 from django.db.models import F
 
-@login_required
 @csrf_exempt
 def react_to_post(request, post_id):
     if request.method == 'POST':
         post = Post.objects.get(id=post_id)
         reaction = request.POST.get('reaction')
-        user_reaction, created = PostReaction.objects.get_or_create(user=request.user, post=post, defaults={'reaction_type': reaction})
+        # user_reaction, created = PostReaction.objects.get_or_create(user=request.user, post=post, defaults={'reaction_type': reaction})
+        # if not created:
+        #     # Update existing reaction
+        #     user_reaction.reaction_type = reaction
+        #     user_reaction.save()
+        try:
+            reaction_instance = PostReaction.objects.get(user=request.user, post=post)
+            print(reaction_instance)
+            reaction_instance.reaction_type = reaction
+            reaction_instance.save()
+            print('reaction updated')
+        except PostReaction.DoesNotExist:
+            print ('Could not find reaction')
+            saveReaction = PostReaction(user=request.user, post=post, reaction_type=reaction)
+            saveReaction.save()
 
-        if not created:
-            # Update existing reaction
-            user_reaction.reaction_type = reaction
-            user_reaction.save()
 
         if reaction == 'like':
             post.likes_count += 1
@@ -35,13 +44,16 @@ def react_to_post(request, post_id):
 
 # @login_required
 def post_list(request):
+    userId = request.session['userId']
+    print(request.session['userId'])
     posts = Post.objects.all()
     users = User.objects.all()
     user_reactions = PostReaction.objects.filter(user=request.user)
+    
     reactions = {reaction.post_id: reaction.reaction_type for reaction in user_reactions}
-    for post in posts:
-        print (post)
-    return render(request, 'socialmedia.html', {'posts': posts, 'reactions': reactions, 'users': users})
+    print(reactions)
+    print(user_reactions)
+    return render(request, 'socialmedia.html', {'posts': posts, 'reactions': reactions, 'users': users, 'userId' : userId})
 
 
 @login_required

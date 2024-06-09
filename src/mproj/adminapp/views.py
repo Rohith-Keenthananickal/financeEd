@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login
 from socialMedia.models import Post
 from .models import Student  # Assuming you have a Student model
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse, HttpResponseBadRequest
 # from .models import Post, Comment
 # from .forms import PostForm, CommentForm
 
@@ -19,17 +20,28 @@ def signup(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        data=authenticate(username=username,password=password)
+        data = authenticate(username=username, password=password)
+        
         if data is not None:
-            login(request,data)
+            login(request, data)
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                user_details = {
+                    'id': data.id,
+                    'username': data.username,
+                    'role': data.role
+                }
+                userId=request.session['userId']=data.id
+                return JsonResponse({'status': 'success', 'user_details': user_details})
+
             if data.is_authenticated and data.role == 'ADMIN':
-                print("data")
                 return redirect('dashboard')
             if data.is_authenticated and data.role == "STUDENT":
                 return redirect('udash')
         else:
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'status': 'fail', 'message': 'Invalid credentials'}, status=400)
             print("login failed")
-    return render(request,'signup.html')
+    return render(request, 'signup.html')
 
 
 def signin(request):
