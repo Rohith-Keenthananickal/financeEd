@@ -36,9 +36,40 @@ function sendReaction(postId, reaction) {
     });
 }
 
-$(document).on("click", ".reaction-btn", function (e) {
-    e.preventDefault();
-    const postId = $(this).data('post-id');
-    const reaction = $(this).data('reaction');
-    sendReaction(postId, reaction);
+// $(document).on("click", ".reaction-btn", function (e) {
+//     e.preventDefault();
+//     const postId = $(this).data('post-id');
+//     const reaction = $(this).data('reaction');
+//     sendReaction(postId, reaction);
+// });
+
+
+
+$(document).ready(function() {
+    $('.reaction-btn').click(function() {
+        var $this = $(this);
+        var postId = $this.data('post-id');
+        var reaction = $this.data('reaction');
+
+        $.ajax({
+            type: 'POST',
+            url: '/socialmedia/toggle_reaction/',
+            data: {
+                'post_id': postId,
+                'reaction_type': reaction,
+                // 'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+            },
+            success: function(response) {
+                if (response.reacted) {
+                    $this.removeClass('text-white reaction-btn').addClass('text-red liked ti ti-heart-filled reaction-btn');
+                } else {
+                    $this.removeClass('text-red liked ti ti-heart-filled').addClass('ti ti-heart text-white reaction-btn');
+                }
+                $this.siblings('.likes-count').text(response.likes_count);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    });
 });

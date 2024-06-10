@@ -9,52 +9,86 @@ from adminapp.models import User
 from django.db.models import F
 
 @csrf_exempt
-def react_to_post(request, post_id):
+def toggle_reaction(request):
     if request.method == 'POST':
+        userId = request.session['userId']
+        post_id = request.POST.get('post_id')
+        reaction_type = request.POST.get('reaction_type')  # Assuming you have different types of reactions
+
+        # Toggle reaction logic
+        reaction, created = Reaction.objects.get_or_create(user_id=userId, post_id=post_id, reaction=reaction_type)
+        if not created:
+            reaction.delete()
+            reacted = False
+            update_post = Post.objects.get(id=post_id)
+            update_post.likes_count = F('likes_count') - 1 
+            update_post.save()
+        else:
+            reacted = True
+            update_post = Post.objects.get(id=post_id)
+            update_post.likes_count = F('likes_count') + 1 
+            update_post.save()
+
+        # Return the new number of likes for the post
         post = Post.objects.get(id=post_id)
-        reaction = request.POST.get('reaction')
-        # user_reaction, created = PostReaction.objects.get_or_create(user=request.user, post=post, defaults={'reaction_type': reaction})
-        # if not created:
-        #     # Update existing reaction
-        #     user_reaction.reaction_type = reaction
-        #     user_reaction.save()
-        try:
-            reaction_instance = PostReaction.objects.get(user=request.user, post=post)
-            print(reaction_instance)
-            reaction_instance.reaction_type = reaction
-            reaction_instance.save()
-            print('reaction updated')
-        except PostReaction.DoesNotExist:
-            print ('Could not find reaction')
-            saveReaction = PostReaction(user=request.user, post=post, reaction_type=reaction)
-            saveReaction.save()
+        likes_count = Reaction.objects.filter(post=post).count()
 
+        return JsonResponse({'reacted': reacted, 'likes_count': likes_count})
 
-        if reaction == 'like':
-            post.likes_count += 1
-        elif reaction == 'dislike':
-            post.dislikes_count += 1
-        elif reaction == 'report':
-            post.reports_count += 1
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
-        post.save()
-        return JsonResponse({'message': 'Reaction recorded.'})
+# @csrf_exempt
+# def react_to_post(request, post_id):
+#     if request.method == 'POST':
+#         userId = request.session['userId']
+#         post = Post.objects.get(id=post_id)
+#         reaction = request.POST.get('reaction')
 
-    return JsonResponse({'error': 'Invalid request.'}, status=400)
+#         if Reaction.objects.filter(user=userId, post=post, reaction=reaction).exists():
+#             user = User.objects.filter(id=userId).first()
+#             reaction = Reaction.objects.filter(user=user, post=post).values()
+#         else:
+#             user = User.objects.filter(id=userId).first()        
+#             saveReaction = Reaction(user=user, post=post, reaction=reaction)
+#             saveReaction.save()
+
+#         if reaction == 'like':
+#             post.likes_count += 1
+#         elif reaction == 'dislike':
+#             post.dislikes_count += 1
+#         elif reaction == 'report':
+#             post.reports_count += 1
+
+#         post.save()
+#         return JsonResponse({'message': 'Reaction recorded.'})
+
+#     return JsonResponse({'error': 'Invalid request.'}, status=400)
 
 # @login_required
 def post_list(request):
     userId = request.session['userId']
-    print(request.session['userId'])
     posts = Post.objects.all()
     users = User.objects.all()
-    user_reactions = PostReaction.objects.filter(user=request.user)
+    user_reactions = Reaction.objects.filter(user_id=userId)
     
-    reactions = {reaction.post_id: reaction.reaction_type for reaction in user_reactions}
-    print(reactions)
-    print(user_reactions)
-    return render(request, 'socialmedia.html', {'posts': posts, 'reactions': reactions, 'users': users, 'userId' : userId})
+    reacted_post_ids = set(user_reactions.values_list('post_id', flat=True))
+    print(reacted_post_ids)
 
+    return render(request, 'socialmedia.html', {
+        'posts': posts,
+        'reacted_post_ids': reacted_post_ids,
+        'users': users,
+        'userId': userId,
+        'reactionCheck' : checkReactionType
+    })
+
+def checkReactionType(post, userId):
+    # userId = request.session['userId']
+    post_reactions = Reaction.objects.filter(post=post,user_id = userId)
+    if post_reactions.exists():
+        return post_reactions.first().reaction
+    else:
+        return None
 
 @login_required
 def follow_user(request, user_id):
