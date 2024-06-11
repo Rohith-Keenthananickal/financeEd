@@ -4,9 +4,14 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+
+from socialMedia.serializer import PostReactionSerializer, PostSerializer
 from .models import Follow, Post, Reaction, PostReaction
 from adminapp.models import User
 from django.db.models import F
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 @csrf_exempt
 def toggle_reaction(request):
@@ -108,3 +113,62 @@ def unfollow_user(request, user_id):
         Follow.objects.filter(follower=request.user, following=following).delete()
         return JsonResponse({'message': 'Successfully unfollowed user.'})
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+
+@api_view(['GET'])
+def listPosts(request):
+    posts = Post.objects.all()
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def listReactions(request):
+    reactions = Reaction.objects.all()
+    serializer = PostReactionSerializer(reactions, many=True)
+    return Response(serializer.data)
+
+@csrf_exempt
+@api_view(['POST'])
+def reactToPost(request):
+    if request.method == 'POST':
+        data = request.data
+        reaction_type = data['reaction']
+        user_id = data['userId']
+        post_id = data['postId']
+        print(post_id,"post Id")
+        print(user_id,"user Id")
+
+        try:
+            post = Post.objects.get(id=post_id)
+        except Post.DoesNotExist:
+            return Response({"error": "Post not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+        try:
+            reaction = Reaction.objects.get(user_id=user_id, post_id=post_id)
+            current_reaction = reaction.reaction
+            reaction.delete()
+            if reaction_type == 'like' and current_reaction == 'like':
+                post.likes_count = max(0, post.likes_count - 1)
+
+            if reaction_type == 'dislike' and current_reaction == 'dislike':
+                post.dislikes_count = max(0, post.dislikes_count - 1)
+            post.save()
+            return Response({"reaction": reaction_type}, status=status.HTTP_200_OK)
+        except Reaction.DoesNotExist:
+            # Creating a new reaction
+            reaction = Reaction(user_id=user_id, post=post, reaction=reaction_type)
+            if reaction_type == 'like':
+                post.likes_count += 1
+            elif reaction_type == 'dislike':
+                post.dislikes_count += 1
+            elif reaction_type == 'report':
+                post.reports_count += 1
+            post.save()
+
+        reaction_serializer = PostReactionSerializer(reaction, data=data, partial=True)
+        if reaction_serializer.is_valid():
+            reaction_serializer.save()
+            return Response(reaction_serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(reaction_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
