@@ -45,8 +45,13 @@ header{
     background-color: black;
 }
 
-.form-control{
+/* .form-control{
     background-color: black;
     border: none;
     box-shadow: none !important;
+} */
+
+
+.d-hidden{
+    visibility: hidden;
 }

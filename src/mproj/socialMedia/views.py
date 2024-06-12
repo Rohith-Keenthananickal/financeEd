@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-from socialMedia.serializer import PostReactionSerializer, PostSerializer
+from socialMedia.serializer import CreatePostSerializer, PostReactionSerializer, PostSerializer
 from .models import Follow, Post, Reaction, PostReaction
 from adminapp.models import User
 from django.db.models import F
@@ -154,7 +154,9 @@ def reactToPost(request):
             if reaction_type == 'dislike' and current_reaction == 'dislike':
                 post.dislikes_count = max(0, post.dislikes_count - 1)
             post.save()
-            return Response({"reaction": reaction_type}, status=status.HTTP_200_OK)
+            reaction_serializer = PostReactionSerializer(reaction, data=data, partial=True)
+            if reaction_serializer.is_valid():
+                return Response(reaction_serializer.data, status=status.HTTP_200_OK)
         except Reaction.DoesNotExist:
             # Creating a new reaction
             reaction = Reaction(user_id=user_id, post=post, reaction=reaction_type)
@@ -172,3 +174,22 @@ def reactToPost(request):
             return Response(reaction_serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(reaction_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+@api_view(['POST'])
+def savePost(request):
+    if request.method == 'POST':
+        data = request.data
+        user_id = data.get('userId')
+        print(user_id)
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = CreatePostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

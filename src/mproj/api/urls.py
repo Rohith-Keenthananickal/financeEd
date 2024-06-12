@@ -4,6 +4,7 @@ from socialMedia import views
 
 urlpatterns = [
     path('socialmedia/post/list', views.listPosts, name='listPosts'),
+    path('socialmedia/post', views.savePost, name='savePost'),
     path('socialmedia/post/reactions', views.listReactions, name='listReactions'),
     path('socialmedia/post/reaction', views.reactToPost, name='reactToPost'),
 ]

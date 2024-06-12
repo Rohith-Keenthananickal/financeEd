@@ -50,6 +50,7 @@ $(document).ready(function() {
         }
         return cookieValue;
     }
+    const csrftoken = getCookie('csrftoken');
     
     function getCsrfToken() {
         return getCookie('csrftoken') || document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -94,13 +95,17 @@ $(document).ready(function() {
                             </div>
                             <a href="#" class="d-block"><img src="http://127.0.0.1:8000/${items.image}" class="card-img-top"></a>
                             <div class="mt-2 d-flex align-items-center gap-3">
-                                <div class="d-flex align-items-center">
-                                    <i class="ti ti-heart-filled text-red fs-2 cursor-pointer like-icon liked-icon reaction-btn"
-                                        data-post-id="${items.id}" data-reaction="like" ${userReacted ? '' : 'style="display:none;"'}></i>
-                                    <i class="ti ti-heart fs-2 cursor-pointer text-white unlike-icon reaction-btn"
-                                        data-post-id="${items.id}" data-reaction="like" ${userReacted ? 'style="display:none;"' : ''}></i>
-                                    <span class="likes-count text-white fs-5">${items.likes_count}</span>
+                                <div>
+                                    <div class="d-flex align-items-center" id="like-icon-container-${items.id}">
+                                        <i class="ti ti-heart-filled text-red fs-2 cursor-pointer like-icon liked-icon reaction-btn"
+                                            data-post-id="${items.id}" data-reaction="like" ${userReacted ? '' : 'style="display:none;"'}></i>
+                                        <i class="ti ti-heart fs-2 cursor-pointer text-white unlike-icon reaction-btn"
+                                            data-post-id="${items.id}" data-reaction="like" ${userReacted ? 'style="display:none;"' : ''}></i>
+                                        <span class="likes-count text-white fs-5">${items.likes_count}</span>
+                                    </div>
+                                    
                                 </div>
+                                
                                 <div class="d-flex align-items-center">
                                     <i class="ti ti-thumb-down fs-2 cursor-pointer text-white"></i>
                                     <span class="dislikes-count text-white fs-5">${items.dislikes_count}</span>
@@ -113,20 +118,6 @@ $(document).ready(function() {
                         </div>`;
                 });
                 $("#posts-container").html(html_items);
-                // $(".liked-icon").on("click", function() {
-                //     console.log($(this));
-                //     $(this).removeClass("ti-heart-filled")
-                //     $(this).addClass("ti-heart")
-                //     let postId = $(this).data("post-id");
-                //     react(postId);
-                // });
-                // $(".unlike-icon").on("click", function() {
-                //     console.log($(this));
-                //     $(this).removeClass("ti-heart")
-                //     $(this).addClass("ti-heart-filled")
-                //     let postId = $(this).data("post-id");
-                //     react(postId);
-                // });
             },
             error: function(error) {
                 console.log("Error");
@@ -162,18 +153,118 @@ $(document).ready(function() {
         });
     }
 
-    $('#posts-container').on('click', '.liked-icon', function() {
-        console.log($(this));
-        $(this).removeClass("ti-heart-filled").addClass("ti-heart");
+
+     $('#posts-container').on('click', '.liked-icon', function() {
         let postId = $(this).data("post-id");
         react(postId);
+        console.log($(this));
+        let unlikeIcon = `<i class="ti ti-heart fs-2 cursor-pointer text-white unlike-icon reaction-btn"
+            data-post-id="${postId}" data-reaction="like"></i>`
+       $("#like-icon-container").html(unlikeIcon)
+        
     });
 
     $('#posts-container').on('click', '.unlike-icon', function() {
-        console.log($(this));
-        $(this).removeClass("ti-heart").addClass("ti-heart-filled");
         let postId = $(this).data("post-id");
-        react(postId);
+        $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:8000/api/socialmedia/post/reaction",
+            data: {
+                'postId': postId,
+                'reaction': 'like',
+                'userId': currentUserId,
+            },
+            success: function(response) {
+                let likedIcon = `<i class="ti ti-heart-filled text-red fs-2 cursor-pointer like-icon liked-icon reaction-btn"
+                                data-post-id="${response.post.id}" data-reaction="like" }></i>
+                                
+                                <span class="likes-count text-white fs-5">${response.post.likes_count}</span>`
+                $("#like-icon-container-" + postId + "").html(likedIcon)
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+
     });
+
+
+    
+
+    // const previewPhoto = () => {
+    //     const file = input.files;
+    //     if (file) {
+    //         const fileReader = new FileReader();
+    //         const preview = document.getElementById('file-preview');
+    //         fileReader.onload = event => {
+    //             preview.setAttribute('src', event.target.result);
+    //         }
+    //         fileReader.readAsDataURL(file[0]);
+    //     }
+    // }
+    // const input = $("#file-upload");
+    // input.addEventListener('change', previewPhoto);
+
+
+    document.getElementById('postForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        let image = $("#file-upload")
+        console.log(document.getElementById('file-upload'));
+        console.log(document.getElementById('file-upload').files[0]);
+        // Get form data
+        let formData = new FormData();
+        formData.append('userId', currentUserId);
+        formData.append('image', document.getElementById('file-upload').files[0]);
+        formData.append('description', document.getElementById('description').value);
+        console.log(formData);
+        // Make AJAX request
+        fetch('http://127.0.0.1:8000/api/socialmedia/post', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Token your_token', // Replace with your actual token
+                'X-CSRFToken': csrftoken
+            },
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            getPostsAndReaction();
+            // Handle success (e.g., display a success message or redirect)
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle error (e.g., display an error message)
+        });
+    });
+
+
+    document.getElementById('file-upload').addEventListener('change', function(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+    
+        if (file) {
+            const reader = new FileReader();
+            image = $("#image-preview").removeClass('d-hidden');
+            reader.onload = function(e) {
+                const imagePreview = document.getElementById('image-preview');
+                
+                imagePreview.src = e.target.result;
+            }
+    
+            reader.readAsDataURL(file);
+        } else {
+            // If no file is selected, clear the image preview
+            document.getElementById('image-preview').src = '#';
+        }
+    });
+    
 });
 

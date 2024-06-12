@@ -186,7 +186,15 @@ https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
                
                       <div class="col-3">
                           <div class="d-flex justify-content-end">
+                            
                               <div>
+                                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-simple">
+                                    <i class="ti ti-plus fs-2"></i>
+                                    <span class="ms-2 ">
+                                        Upload Post
+                                    </span>
+                                   
+                                </button>
                                   <div class="text-muted mb-3">People You Follow</div>
                                   <div class="card">
                                       <div class="card-body ps-0">
@@ -234,6 +242,40 @@ https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
           </div>
       </div>
     </div>
+    <div class="modal modal-blur fade" id="modal-simple" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Upload Post</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="postForm" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="file" class="form-control mb-3" id="file-upload">
+                        <img id="image-preview" src="#" alt="Image Preview" class="d-hidden">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="example-textarea-input" id="description" rows="3" placeholder="Content.." spellcheck="false" data-ms-editor="true"></textarea>
+                    </div>
+                    <!-- <input type="submit" value="Upload" class="btn btn-primary" id="uploadPost"> -->
+                    <div class="w-100 d-flex justify-content-end">
+                        <button class="btn btn-primary" data-bs-dismiss="modal" type="submit">Upload</button>
+
+                    </div>
+                </form>
+              
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="uploadPost">Upload</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
 </body>
 </html>
