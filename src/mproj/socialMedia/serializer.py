@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from socialMedia.models import Post, Reaction
+from socialMedia.models import Follow, Post, Reaction
 from adminapp.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email']
+        fields = ['id', 'username', 'email', 'role']
 
 class PostSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -35,3 +35,12 @@ class CreatePostSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id', 'image', 'description', 'created_at', 'likes_count', 'dislikes_count', 'reports_count']
         read_only_fields = ['id', 'created_at', 'likes_count', 'dislikes_count', 'reports_count']
+
+
+class FollowUsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Follow
+        fields = ['follower', 'following']
+
+    def create(self, validated_data):
+        return Follow.objects.create(**validated_data)

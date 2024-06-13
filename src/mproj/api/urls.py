@@ -7,4 +7,7 @@ urlpatterns = [
     path('socialmedia/post', views.savePost, name='savePost'),
     path('socialmedia/post/reactions', views.listReactions, name='listReactions'),
     path('socialmedia/post/reaction', views.reactToPost, name='reactToPost'),
+    path('socialmedia/users/list', views.listUsers, name='listUsers'),
+    path('socialmedia/user/follow', views.followUser, name='followUser'),
+
 ]

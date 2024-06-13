@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-from socialMedia.serializer import CreatePostSerializer, PostReactionSerializer, PostSerializer
+from socialMedia.serializer import CreatePostSerializer, FollowUsersSerializer, PostReactionSerializer, PostSerializer, UserSerializer
 from .models import Follow, Post, Reaction, PostReaction
 from adminapp.models import User
 from django.db.models import F
@@ -193,3 +193,70 @@ def savePost(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+@api_view(['POST'])
+def listUsers(request):
+    try:
+        userType = request.data.get('userType')
+        if userType:
+            users = User.objects.filter(role=userType)
+        else:
+            users = User.objects.all()
+        
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except KeyError:
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+            
+@api_view(['POST'])
+def followUser(request):
+    data = request.data
+    follower_id = data.get('follower')
+    following_id = data.get('following')
+    
+    if not follower_id or not following_id:
+        return Response({'error': 'Follower and following IDs are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    try:
+        follower_user = User.objects.get(id=follower_id)
+    except User.DoesNotExist:
+        return Response({'error': 'Follower not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    try:
+        following_user = User.objects.get(id=following_id)
+    except User.DoesNotExist:
+        return Response({'error': 'Following User not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    # Check if the follower is already following the user
+    follow_entry = Follow.objects.filter(follower=follower_user, following=following_user).first()
+    
+    if follow_entry:
+        # If already following, delete the entry
+        follow_entry.delete()
+        return Response({'message': 'Unfollowed successfully'}, status=status.HTTP_200_OK)
+    else:
+        # If not following, create a new follow entry
+        follow_data = {'follower': follower_user.id, 'following': following_user.id}
+        serializer = FollowUsersSerializer(data=follow_data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+@api_view(['POST'])
+def listFollowingUsers(request):
+    data = request.data
+    currentUserId = data.get('currentUserId')
+    if not currentUserId:
+        return Response({'error': 'Current User ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        
