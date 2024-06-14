@@ -265,6 +265,88 @@ $(document).ready(function() {
             document.getElementById('image-preview').src = '#';
         }
     });
+
+    function listFollowingUsers(){
+        $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:8000/api/socialmedia/user/followers/list",
+            data: {
+                'currentUserId': currentUserId,
+            },
+            success: function(response) {
+                console.log(response);
+                let folloing_users =""
+                response.forEach((items) => {
+                    
+                folloing_users += `<div>
+                <div class="row">
+                    <div class="col-auto">
+                        <span class="avatar rounded-circle">JL</span>
+                    </div>
+                    <div class="col">
+                        <div class="text-truncate">
+                            <strong class="fs-5">${items.username}</strong>
+                        </div>
+                        <div class="text-blue cursor-pointer fs-5">Message</div>
+                    </div>
+
+                </div>
+                 </div>`
+                })
+                $("#following-users").html(folloing_users)
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+    }
+
+    listFollowingUsers();
     
+
+    function listUnFollowingUsers(){
+        $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:8000/api/socialmedia/user/unfollowers/list",
+            data: {
+                'currentUserId': currentUserId,
+            },
+            success: function(response) {
+                console.log(response);
+                let nonFolloing_users =""
+                response.forEach((items) => {
+                    
+                    nonFolloing_users += `<div>
+                                          <div class="row">
+                                              <div class="col-auto">
+                                                  <span class="avatar rounded-circle">JL</span>
+                                              </div>
+                                              <div class="col-auto">
+                                                  <div class="text-truncate">
+                                                      <strong class="fs-5">${items.username}</strong>
+                                                  </div>
+                                                  <div class="text-muted fs-5">Suggested for you</div>
+                                              </div>
+                                              <div class="col d-flex align-items-center justify-content-end">
+                                                  <div class="text-blue cursor-pointer fs-5">
+                                                      Follow
+                                                  </div>
+                                              </div>
+                                             
+
+                                          </div>
+                                      </div>`
+                })
+                $("#suggested-users").html(nonFolloing_users)
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+    }
+
+    listUnFollowingUsers();
 });
 

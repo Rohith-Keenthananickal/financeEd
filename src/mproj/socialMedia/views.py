@@ -255,8 +255,45 @@ def followUser(request):
 @api_view(['POST'])
 def listFollowingUsers(request):
     data = request.data
-    currentUserId = data.get('currentUserId')
-    if not currentUserId:
+    current_user_id = data.get('currentUserId')
+    
+    if not current_user_id:
         return Response({'error': 'Current User ID is required'}, status=status.HTTP_400_BAD_REQUEST)
-    else:
+    
+    try:
+        current_user = User.objects.get(id=current_user_id)
+    except User.DoesNotExist:
+        return Response({'error': 'Current User not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    # Retrieve the User instances that the current user is following
+    following_users = User.objects.filter(followers__follower=current_user)
+    serializer = UserSerializer(following_users, many=True)
+    
+    return Response(serializer.data, status=status.HTTP_200_OK)
         
+
+@api_view(['POST'])
+def listUnfollowedUsers(request):
+    data = request.data
+    current_user_id = data.get('currentUserId')
+    
+    if not current_user_id:
+        return Response({'error': 'Current User ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    try:
+        current_user = User.objects.get(id=current_user_id)
+    except User.DoesNotExist:
+        return Response({'error': 'Current User not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    # Retrieve the users that the current user is following
+    following_users = User.objects.filter(followers__follower=current_user)
+    
+    # Retrieve all users excluding the ones that the current user is following
+    unfollowed_users = User.objects.exclude(id__in=following_users.values_list('id', flat=True)).exclude(id=current_user_id)
+    serializer = UserSerializer(unfollowed_users, many=True)
+    
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+def profile(request):
+    return render(request, 'profile.html')
