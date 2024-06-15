@@ -70,60 +70,70 @@ $(document).ready(function() {
             type: "GET",
             url: "http://127.0.0.1:8000/api/socialmedia/post/reactions",
             success: function(response) {
+                console.log(response,"reaction Data");
                 reactionData = response;
+
+                $.ajax({
+                    type: "GET",
+                    url: "http://127.0.0.1:8000/api/socialmedia/post/list",
+                    success: function(response) {
+                        let html_items = "";
+                        response.forEach((items) => {
+                            let userReacted = reactionData.some(reaction => reaction.user.id === currentUserId && reaction.post.id === items.id && reaction.reaction == 'like') ;
+                            let userdisliked = reactionData.some(reaction => reaction.user.id === currentUserId && reaction.post.id === items.id && reaction.reaction == 'dislike') ;
+                            console.log(items.id,"items");
+                            console.log("user disliked", userdisliked);
+                            console.log(reactionData,"reaction");
+                            html_items += `
+                                <div class="card card-sm mb-4" id="post-${items.id}" data-post-id="${items.id}">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar me-3 rounded-circle" style="background-image: url(http://127.0.0.1:8000/${items.image})"></span>
+                                        <div>
+                                            <div class="text-white fs-4">${items.user.username}</div>
+                                            <div class="text-secondary fs-5">${timeAgo(items.created_at)}</div>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="d-block"><img src="http://127.0.0.1:8000/${items.image}" class="card-img-top"></a>
+                                    <div class="mt-2 d-flex align-items-center gap-3">
+                                        <div>
+                                            <div class="d-flex align-items-center" id="like-icon-container-${items.id}">
+                                                <i class="ti ti-heart-filled text-red fs-2 cursor-pointer like-icon liked-icon reaction-btn"
+                                                    data-post-id="${items.id}" data-reaction="like" ${userReacted ? '' : 'style="display:none;"'}></i>
+                                                <i class="ti ti-heart fs-2 cursor-pointer text-white unlike-icon reaction-btn"
+                                                    data-post-id="${items.id}" data-reaction="like" ${userReacted ? 'style="display:none;"' : ''}></i>
+                                                <span class="likes-count text-white fs-5">${items.likes_count}</span>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class="d-flex align-items-center" id="dislike-icon-container-${items.id}">
+                                            <i class="ti ti-thumb-down fs-2 cursor-pointer text-white dislike-btn" data-post-id2="${items.id}" data-reaction="like"
+                                            ${userdisliked ? 'style="display:none;"' : ''}></i>
+                                            <i class="ti ti-thumb-down-filled fs-2 cursor-pointer text-white disliked-btn" data-post-id2="${items.id}" data-reaction="like"
+                                            ${userdisliked ? '' : 'style="display:none;"'}></i>
+                                            <span class="dislikes-count text-white fs-5">${items.dislikes_count}</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center mt-2 flex-wrap">
+                                        <div class="text-white fw-bold fs-5">${items.user.username}</div>
+                                        <div class="text-white fs-5 fw-light">${items.description}</div>
+                                    </div>
+                                </div>`;
+                        });
+                        $("#posts-container").html(html_items);
+                    },
+                    error: function(error) {
+                        console.log("Error");
+                    }
+                });
+        
             },
             error: function(error) {
                 console.log("Error");
             }
         });
     
-        $.ajax({
-            type: "GET",
-            url: "http://127.0.0.1:8000/api/socialmedia/post/list",
-            success: function(response) {
-                let html_items = "";
-                response.forEach((items) => {
-                    let userReacted = reactionData.some(reaction => reaction.user.id === currentUserId && reaction.post.id === items.id && reaction.reaction == 'like') ;
-                    html_items += `
-                        <div class="card card-sm mb-4" id="post-${items.id}" data-post-id="${items.id}">
-                            <div class="d-flex align-items-center mb-2">
-                                <span class="avatar me-3 rounded-circle" style="background-image: url(http://127.0.0.1:8000/${items.image})"></span>
-                                <div>
-                                    <div class="text-white fs-4">${items.user.username}</div>
-                                    <div class="text-secondary fs-5">${timeAgo(items.created_at)}</div>
-                                </div>
-                            </div>
-                            <a href="#" class="d-block"><img src="http://127.0.0.1:8000/${items.image}" class="card-img-top"></a>
-                            <div class="mt-2 d-flex align-items-center gap-3">
-                                <div>
-                                    <div class="d-flex align-items-center" id="like-icon-container-${items.id}">
-                                        <i class="ti ti-heart-filled text-red fs-2 cursor-pointer like-icon liked-icon reaction-btn"
-                                            data-post-id="${items.id}" data-reaction="like" ${userReacted ? '' : 'style="display:none;"'}></i>
-                                        <i class="ti ti-heart fs-2 cursor-pointer text-white unlike-icon reaction-btn"
-                                            data-post-id="${items.id}" data-reaction="like" ${userReacted ? 'style="display:none;"' : ''}></i>
-                                        <span class="likes-count text-white fs-5">${items.likes_count}</span>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div class="d-flex align-items-center">
-                                    <i class="ti ti-thumb-down fs-2 cursor-pointer text-white"></i>
-                                    <span class="dislikes-count text-white fs-5">${items.dislikes_count}</span>
-                                </div>
-                            </div>
-                            <div class="d-flex gap-2 align-items-center mt-2 flex-wrap">
-                                <div class="text-white fw-bold fs-5">${items.user.username}</div>
-                                <div class="text-white fs-5 fw-light">${items.description}</div>
-                            </div>
-                        </div>`;
-                });
-                $("#posts-container").html(html_items);
-            },
-            error: function(error) {
-                console.log("Error");
-            }
-        });
-
+        
         
     
         function timeAgo(dateString) {
@@ -180,6 +190,52 @@ $(document).ready(function() {
                                 
                                 <span class="likes-count text-white fs-5">${response.post.likes_count}</span>`
                 $("#like-icon-container-" + postId + "").html(likedIcon)
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+
+    });
+
+    $('#posts-container').on('click', '.dislike-btn', function() {
+        let postId = $(this).data("post-id2");
+        $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:8000/api/socialmedia/post/reaction",
+            data: {
+                'postId': postId,
+                'reaction': 'dislike',
+                'userId': currentUserId,
+            },
+            success: function(response) {
+                let dislikedIcon = `<i class="ti ti-thumb-down-filled fs-2 cursor-pointer text-white disliked-btn" data-post-id2="${response.post.id}" data-reaction="like"></i>   
+                                <span class="dislikes-count text-white fs-5">${response.post.dislikes_count}</span>`
+                $("#dislike-icon-container-" + postId + "").html(dislikedIcon)
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+
+    });
+
+    $('#posts-container').on('click', '.disliked-btn', function() {
+        let postId = $(this).data("post-id2");
+        $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:8000/api/socialmedia/post/reaction",
+            data: {
+                'postId': postId,
+                'reaction': 'dislike',
+                'userId': currentUserId,
+            },
+            success: function(response) {
+                let dislikeIcon = `<i class="ti ti-thumb-down fs-2 cursor-pointer text-white dislike-btn" data-post-id2="${response.post.id}" data-reaction="like"></i>   
+                                <span class="dislikes-count text-white fs-5">${response.post.dislikes_count}</span>`
+                $("#dislike-icon-container-" + postId + "").html(dislikeIcon)
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);

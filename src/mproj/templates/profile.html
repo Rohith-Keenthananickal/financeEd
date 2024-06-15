@@ -16,14 +16,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-payments.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-vendors.min.css">
-    <!-- <link rel="stylesheet" href="{% static 'style/main.css' %}">
-    <link rel="stylesheet" href="{% static 'style/style.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'style/main.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <link rel="stylesheet" href="{% static 'style/profile.css' %}">
     <script src="
 https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
 "></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="{% static 'js/post.js' %}"></script> -->
+    <script src="{% static 'js/profile.js' %}"></script>
     <title>Profile</title>
 </head>
 <body>
@@ -39,20 +39,20 @@ https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
                     <div class="navbar-nav text-center" id="navbarTogglerDemo03">
                         <ul class="navbar-nav mb-2 mb-lg-0 gap-4">
                             <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link text-white" href="#about">About</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link" href="#learn">Learn</a>
+                            <a class="nav-link text-white" href="#learn">Learn</a>
                             </li>
                             <li class="nav-item">
-                            {% comment %} <a class="nav-link" href="{% url 'socialmedia/post' %}">Social</a> {% endcomment %}
+                            <a class="nav-link text-white" href="{% url 'post_list' %}">Social</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                             <a class="nav-link" href={% url "signup" %}>Login</a>
-                            </li>
+                            </li> -->
                         </ul>
                     {% comment %} <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 180px;">
@@ -65,8 +65,8 @@ https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
                             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                             <span class="avatar avatar-sm rounded-circle" style="background-image: url('https://preview.tabler.io/static/photos/young-entrepreneur-working-from-a-modern-cafe.jpg')"></span>
                             <div class="d-none d-xl-block ps-2 fs-4">
-                                <div>Jeffie Lewzey</div>
-                                <div class="mt-1 small text-secondary">UI Designer</div>
+                                <div class="text-white userName" style="text-transform: capitalize;"></div>
+                                <div class="mt-1 small text-secondary user-role" style="text-transform: capitalize;">UI Designer</div>
                             </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -87,10 +87,10 @@ https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
         </nav> 
     
        </header>
-    <section class="h-100 gradient-custom-2">
+    <section class="h-100">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center">
-            <div class="col col-lg-9 col-xl-8">
+            <div class="col-10">
               <div class="card">
                 <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
                   <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
@@ -102,59 +102,44 @@ https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
                     </button>
                   </div>
                   <div class="ms-3" style="margin-top: 130px;">
-                    <h5>Andy Horwitz</h5>
-                    <p>New York</p>
+                    <h5 class="userName" style="text-transform: capitalize;"></h5>
+                    <p class="user-role" style="text-transform: capitalize;"></p>
                   </div>
                 </div>
                 <div class="p-4 text-black bg-body-tertiary">
                   <div class="d-flex justify-content-end text-center py-1 text-body">
                     <div>
-                      <p class="mb-1 h5">253</p>
-                      <p class="small text-muted mb-0">Photos</p>
+                      <p class="mb-1 h5" id="post-length"></p>
+                      <p class="small text-muted mb-0">Posts</p>
                     </div>
                     <div class="px-3">
-                      <p class="mb-1 h5">1026</p>
+                      <p class="mb-1 h5" id="followers"></p>
                       <p class="small text-muted mb-0">Followers</p>
                     </div>
                     <div>
-                      <p class="mb-1 h5">478</p>
+                      <p class="mb-1 h5" id="following"></p>
                       <p class="small text-muted mb-0">Following</p>
                     </div>
                   </div>
                 </div>
                 <div class="card-body p-4 text-black">
-                  <div class="mb-5  text-body">
+                  <!-- <div class="mb-5  text-body">
                     <p class="lead fw-normal mb-1">About</p>
                     <div class="p-4 bg-body-tertiary">
                       <p class="font-italic mb-1">Web Developer</p>
                       <p class="font-italic mb-1">Lives in New York</p>
                       <p class="font-italic mb-0">Photographer</p>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="d-flex justify-content-between align-items-center mb-4 text-body">
                     <p class="lead fw-normal mb-0">Recent photos</p>
-                    <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
+                    <!-- <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p> -->
                   </div>
-                  <div class="row g-2">
-                    <div class="col mb-2">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp" alt="image 1"
-                        class="w-100 rounded-3">
-                    </div>
-                    <div class="col mb-2">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp" alt="image 1"
-                        class="w-100 rounded-3">
-                    </div>
+                  <div class="row row-cards g-2" id="post-container">
+                    
+                
                   </div>
-                  <div class="row g-2">
-                    <div class="col">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp" alt="image 1"
-                        class="w-100 rounded-3">
-                    </div>
-                    <div class="col">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp" alt="image 1"
-                        class="w-100 rounded-3">
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>

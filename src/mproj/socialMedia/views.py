@@ -297,3 +297,39 @@ def listUnfollowedUsers(request):
 
 def profile(request):
     return render(request, 'profile.html')
+
+
+@api_view(['POST'])
+def userDetails(request):
+    data = request.data
+    user_id = data.get('userId')
+    
+    if not user_id:
+        return Response({'error': 'User ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    # Get user details
+    user_serializer = UserSerializer(user)
+
+    # Get user's posts
+    user_posts = Post.objects.filter(user=user)
+    posts_serializer = PostSerializer(user_posts, many=True)
+
+    # Get number of followers
+    followers_count = Follow.objects.filter(following=user).count()
+
+    # Get number of following
+    following_count = Follow.objects.filter(follower=user).count()
+
+    response_data = {
+        'user': user_serializer.data,
+        'posts': posts_serializer.data,
+        'followers_count': followers_count,
+        'following_count': following_count,
+    }
+    
+    return Response(response_data, status=status.HTTP_200_OK)

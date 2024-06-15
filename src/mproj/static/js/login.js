@@ -20,7 +20,6 @@ $(document).ready(function() {
                     const userDetails = response.user_details;
                     let currentUser ={'id' : userDetails.id, 'email' : userDetails.email,'role' : userDetails.role}
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                    alert('Login successful');
                     // Redirect based on the user's role
                     if (userDetails.role === 'ADMIN') {
                         window.location.href = '/dashboard';
