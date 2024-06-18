@@ -17,10 +17,14 @@ class User(AbstractUser):
 
     base_role = Role.ADMIN
     role = models.CharField(max_length=100, choices=Role.choices)
+    short_name = models.CharField(max_length=2, blank=True, null=True)
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.pk:
             self.role = self.base_role
+        if self.first_name:
+            self.short_name = self.first_name[0] + self.first_name[-1]
         super().save(*args, **kwargs)
 
 class StudentManager(BaseUserManager):

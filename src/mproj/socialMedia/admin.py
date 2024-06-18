@@ -1,5 +1,5 @@
 from django.contrib import admin
-from socialMedia.models import Follow, Post, Reaction
+from socialMedia.models import Follow, Message, Post, Reaction
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -15,3 +15,4 @@ class ReactionAdmin(admin.ModelAdmin):
 admin.site.register(Post, PostAdmin)
 admin.site.register(Reaction, ReactionAdmin)
 admin.site.register(Follow)
+admin.site.register(Message)

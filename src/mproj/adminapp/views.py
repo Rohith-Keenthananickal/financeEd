@@ -1,3 +1,4 @@
+from http.client import HTTPResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
@@ -50,7 +51,20 @@ def signin(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         username = email
-        userData=Student.objects.create_user(first_name=first_name,email=email,username=username,password=password,role="student")
+        profile_image = request.FILES.get('profile_image', None)
+
+        username = email
+        short_name = first_name[0] + first_name[-1] if first_name else ''
+        short_name = (username[0] + username[1]).upper()
+        userData = Student.objects.create_user(
+            first_name=first_name,
+            email=email,
+            username=username,
+            password=password,
+            role=Student.base_role,
+            short_name=short_name,
+            profile_image=profile_image
+        )
         if userData is not None:
             userData.save()
             print("User Created Successfully")
@@ -58,6 +72,16 @@ def signin(request):
             print("User Created Faild")
     return render(request,'signin.html')
 
+
+def createShortName(request):
+    allUsers = Student.objects.all()
+    for user in allUsers:
+        user.short_name = (user.username[0] + user.username[1]).upper()
+        # user.short_name.capitalize()
+        user.save()
+        print(user)
+        print("Short name created successfully")
+    return HTTPResponse("<h1>Success</h1>")
 
 def dashboard(request):
     return render(request,'dashboard.html')

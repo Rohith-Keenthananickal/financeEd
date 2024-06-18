@@ -12,5 +12,7 @@ urlpatterns = [
     path('socialmedia/user/followers/list', views.listFollowingUsers, name='listFollowingUsers'),
     path('socialmedia/user/unfollowers/list', views.listUnfollowedUsers, name='listUnfollowedUsers'),
     path('socialmedia/user/info', views.userDetails, name='userDetails'),
+    path('send_message/', views.send_message, name='send_message'),
+    path('get_messages/<int:user_id>/<int:recipient_id>/', views.get_messages, name='get_messages'),
 
 ]

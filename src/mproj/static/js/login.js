@@ -17,8 +17,9 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.status === 'success') {
+                    console.log(response)
                     const userDetails = response.user_details;
-                    let currentUser ={'id' : userDetails.id, 'email' : userDetails.email,'role' : userDetails.role}
+                    let currentUser ={'id' : userDetails.id, 'email' : userDetails.email,'role' : userDetails.role, 'username' : userDetails.username};
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
                     // Redirect based on the user's role
                     if (userDetails.role === 'ADMIN') {

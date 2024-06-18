@@ -5,13 +5,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-from socialMedia.serializer import CreatePostSerializer, FollowUsersSerializer, PostReactionSerializer, PostSerializer, UserSerializer
-from .models import Follow, Post, Reaction, PostReaction
+from socialMedia.serializer import CreatePostSerializer, FollowUsersSerializer, MessageSerializer, PostReactionSerializer, PostSerializer, UserSerializer
+from .models import Follow, Post, Reaction, PostReaction, Message
 from adminapp.models import User
 from django.db.models import F
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Q
 
 @csrf_exempt
 def toggle_reaction(request):
@@ -333,3 +334,41 @@ def userDetails(request):
     }
     
     return Response(response_data, status=status.HTTP_200_OK)
+
+
+
+@api_view(['POST'])
+def send_message(request):
+    sender_id = request.data.get('sender_id')
+    recipient_id = request.data.get('recipient_id')
+    message_text = request.data.get('message')
+
+    try:
+        sender = User.objects.get(id=sender_id)
+        recipient = User.objects.get(id=recipient_id)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    message = Message(sender=sender, recipient=recipient, message=message_text)
+    message.save()
+    return Response({'message': 'Message sent successfully'}, status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])
+def get_messages(request, user_id, recipient_id):
+    try:
+        user = User.objects.get(id=user_id)
+        recipient = User.objects.get(id=recipient_id)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    messages = Message.objects.filter(
+        (Q(sender_id=user_id) & Q(recipient_id=recipient_id)) |
+        (Q(sender_id=recipient_id) & Q(recipient_id=user_id))
+    ).order_by('timestamp')
+    
+    serializer = MessageSerializer(messages, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+def chat(request):
+    return render(request, 'chat.html')
