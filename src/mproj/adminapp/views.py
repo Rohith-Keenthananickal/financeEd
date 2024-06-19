@@ -84,7 +84,7 @@ def createShortName(request):
     return HTTPResponse("<h1>Success</h1>")
 
 def dashboard(request):
-    return render(request,'dashboard.html')
+    return render(request,'admin-dashboard.html')
 
 
 def addcourse(request):

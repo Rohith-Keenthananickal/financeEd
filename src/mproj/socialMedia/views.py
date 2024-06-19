@@ -7,7 +7,7 @@ from django.conf import settings
 
 from socialMedia.serializer import CreatePostSerializer, FollowUsersSerializer, MessageSerializer, PostReactionSerializer, PostSerializer, UserSerializer
 from .models import Follow, Post, Reaction, PostReaction, Message
-from adminapp.models import User
+from adminapp.models import User,Student
 from django.db.models import F
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -372,3 +372,9 @@ def get_messages(request, user_id, recipient_id):
 
 def chat(request):
     return render(request, 'chat.html')
+
+@api_view(['POST'])
+def getAllStudents(request):
+    students = Student.objects.filter(role = "STUDENT")
+    serializer = UserSerializer(students, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

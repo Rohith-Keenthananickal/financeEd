@@ -11,5 +11,6 @@ urlpatterns = [
     path('unfollow/<int:user_id>/', views.unfollow_user, name='unfollow_user'),
     path('toggle_reaction/', views.toggle_reaction, name='toggle_reaction'),
     path('send_message/', views.send_message, name='send_message'),
+    path('students/list', views.getAllStudents, name='getAllStudents'),
     path('get_messages/<int:user_id>/<int:recipient_id>/', views.get_messages, name='get_messages'),
 ]

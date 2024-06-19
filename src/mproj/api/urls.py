@@ -14,5 +14,6 @@ urlpatterns = [
     path('socialmedia/user/info', views.userDetails, name='userDetails'),
     path('send_message/', views.send_message, name='send_message'),
     path('get_messages/<int:user_id>/<int:recipient_id>/', views.get_messages, name='get_messages'),
+    path('students/list', views.getAllStudents, name='getAllStudents'),
 
 ]
