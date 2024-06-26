@@ -19,7 +19,9 @@ $(document).ready(function() {
     
     // Get the userId from query parameters
     var userId = queryParams["userId"];
-    currentUserId = userId
+    if(userId){
+        currentUserId = userId
+    }
     
     if (userId) {
         console.log("User ID: " + userId);

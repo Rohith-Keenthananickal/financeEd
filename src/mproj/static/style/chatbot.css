@@ -110,3 +110,7 @@
     padding: 10px !important;
     border-radius: 15px;
 }
+
+.typing-effect {
+    white-space: pre-line;
+}

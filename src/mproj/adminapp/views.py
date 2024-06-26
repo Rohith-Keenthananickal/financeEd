@@ -19,6 +19,7 @@ from django.http import JsonResponse, HttpResponseBadRequest
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status,serializers
+import openai
 
 
 def signup(request):
@@ -211,34 +212,31 @@ def query_view(request):
     if serializer.is_valid():
         query = serializer.validated_data['query']
 
-        system_prompt = """
+        system_content = """
         You are a friendly and knowledgeable financial advisor chatbot. Your role is to provide helpful advice and guidance on personal finance topics such as budgeting, saving, investing, retirement planning, and more. Respond in a conversational and easy-to-understand manner, tailoring your language and level of detail to the needs of the user.
         """
 
         try:
-            client = anthropic.Anthropic()
-            message_response = client.messages.create(
-                model="claude-3-opus-20240229",
-                max_tokens=1000,
-                temperature=0.0,
-                system=system_prompt,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": query
-                            }
-                        ]
-                    }
-                ]
+            client = openai.OpenAI(
+                api_key="Your_api_key",
+                base_url="https://api.aimlapi.com",
             )
+            chat_completion = client.chat.completions.create(
+                model="mistralai/Mistral-7B-Instruct-v0.2",
+                messages=[
+                    {"role": "system", "content": system_content},
+                    {"role": "user", "content": query},
+                ],
+                temperature=0.7,
+                max_tokens=128,
+            )
+            response = chat_completion.choices[0].message.content
+            print("AI/ML API:\n", response)
 
-            response_serializer = ChatbotResponseSerializer({'message': message_response['content']})
+            response_serializer = ChatbotResponseSerializer({'message': response})
             return Response(response_serializer.data, status=status.HTTP_200_OK)
 
-        except anthropic.AnthropicError as e:
+        except openai.error.OpenAIError as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         except Exception as e:
             return Response({'error': 'An unexpected error occurred: ' + str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

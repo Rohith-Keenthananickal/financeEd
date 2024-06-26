@@ -33,13 +33,13 @@ $(document).ready(function() {
 
     let messageArray = [];
     let messageObject = {}
-    // $(".chat").hide();
+    $(".chat").hide();
 
     $("#search-btn").on("click", function () {
         let centerPart = $(".center-part").hide();
         let chatContainer = $("#search-container").removeClass("justify-content-between");
         chatContainer.addClass("justify-content-end");
-        // $(".chat").show();
+        $(".chat").show();
 
         const query = $('#chat-message-input').val();
         let messageObject = {'type': 'me', 'message': query};
@@ -63,11 +63,11 @@ $(document).ready(function() {
                                 <div class="chat-bubble chat-bubble-me" style="justify-content-end;">
                                     <div class="chat-bubble-title">
                                         <div class="row">
-                                            <div class="col chat-bubble-author">Paweł Kuna</div>
+                                            <div class="col chat-bubble-author fw-bold">You</div>
                                         </div>
                                     </div>
                                     <div class="chat-bubble-body">
-                                        <p>${items.message}</p>
+                                        <p class="typing-effect">${items.message}</p>
                                     </div>
                                 </div>
                             </div>
@@ -85,11 +85,11 @@ $(document).ready(function() {
                             <div class="chat-bubble chat-bubble-bot">
                                 <div class="chat-bubble-title">
                                     <div class="row">
-                                        <div class="col chat-bubble-author">Bot</div>
+                                        <div class="col chat-bubble-author fw-bold">Bot</div>
                                     </div>
                                 </div>
                                 <div class="chat-bubble-body">
-                                    <p>${response.message}</p>
+                                    <p class="typing-effect">${response.message}</p>
                                 </div>
                             </div>
                         </div>
