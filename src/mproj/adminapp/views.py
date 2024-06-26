@@ -9,12 +9,16 @@ from adminapp.models import Course, Student, Video
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 
+# from mproj.adminapp.serializer import ChatbotSerializer
 from socialMedia.models import Post
 from .models import Student  # Assuming you have a Student model
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponseBadRequest
 # from .models import Post, Comment
 # from .forms import PostForm, CommentForm
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status,serializers
 
 
 def signup(request):
@@ -168,7 +172,7 @@ def gotoSocialMedia(request):
 
 # client = anthropic.Anthropic(
 #     # defaults to os.environ.get("ANTHROPIC_API_KEY")
-#     api_key="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",
+#     
 # )
 # message = client.messages.create(
 #     model="claude-3-opus-20240229",
@@ -195,6 +199,52 @@ from django.shortcuts import render
 from .forms import QueryForm
 import anthropic
 
+class QuerySerializer(serializers.Serializer):
+    query = serializers.CharField()
+
+class ChatbotResponseSerializer(serializers.Serializer):
+    message = serializers.CharField()
+
+@api_view(['POST'])
+def query_view(request):
+    serializer = QuerySerializer(data=request.data)
+    if serializer.is_valid():
+        query = serializer.validated_data['query']
+
+        system_prompt = """
+        You are a friendly and knowledgeable financial advisor chatbot. Your role is to provide helpful advice and guidance on personal finance topics such as budgeting, saving, investing, retirement planning, and more. Respond in a conversational and easy-to-understand manner, tailoring your language and level of detail to the needs of the user.
+        """
+
+        try:
+            client = anthropic.Anthropic()
+            message_response = client.messages.create(
+                model="claude-3-opus-20240229",
+                max_tokens=1000,
+                temperature=0.0,
+                system=system_prompt,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": query
+                            }
+                        ]
+                    }
+                ]
+            )
+
+            response_serializer = ChatbotResponseSerializer({'message': message_response['content']})
+            return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+        except anthropic.AnthropicError as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception as e:
+            return Response({'error': 'An unexpected error occurred: ' + str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 def home(request):
     if request.method == 'POST':
         form = QueryForm(request.POST)
@@ -205,10 +255,7 @@ def home(request):
             You are a friendly and knowledgeable financial advisor chatbot. Your role is to provide helpful advice and guidance on personal finance topics such as budgeting, saving, investing, retirement planning, and more. Respond in a conversational and easy-to-understand manner, tailoring your language and level of detail to the needs of the user.
             """
 
-            client = anthropic.Anthropic(
-                # defaults to os.environ.get("ANTHROPIC_API_KEY")
-                api_key="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",
-            )
+            client = anthropic.Anthropic()
             message = client.messages.create(
                 model="claude-3-opus-20240229",
                 max_tokens=1000,
@@ -268,3 +315,5 @@ def add_comment_to_post(request, pk):
     return render(request, 'post.html', {'form': form})
 
 
+def chatbot(request):
+    return render(request,'chatbot.html')

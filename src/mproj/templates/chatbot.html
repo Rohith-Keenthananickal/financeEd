@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-flags.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-payments.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-vendors.min.css">
+    <!-- <link rel="stylesheet" href="{% static 'style/main.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style/chatbot.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/chatbot.js' %}"></script>
+    <title>Chatbot</title>
+</head>
+    <body>
+        {% include 'common-header.html' %}
+        <div id="main-container">
+            <div class="d-flex flex-column justify-content-between align-items-center h-100 w-100" id="search-container">
+                <div class="center-part">
+                   
+                </div>
+                <div class="card-title text-white fs-1 center-part">
+                    ChatBot
+                </div>
+                <div class="chat" style="width: 60% !important;">
+                    <div class="chat-bubbles" id="chat-container">
+                      <!-- <div class="chat-item">
+                        <div class="row align-items-end justify-content-end">
+                          <div class="col col-lg-6">
+                            <div class="chat-bubble chat-bubble-me">
+                              <div class="chat-bubble-title">
+                                <div class="row">
+                                  <div class="col chat-bubble-author">Paweł Kuna</div>
+                                  <div class="col-auto chat-bubble-date">09:32</div>
+                                </div>
+                              </div>
+                              <div class="chat-bubble-body">
+                                <p>Hey guys, I just pushed a new commit on the <code>dev</code> branch. Can you have a look and tell me what you think?</p>
+                              </div>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <div class="chat-item">
+                        <div class="row align-items-end">
+                          
+                          <div class="col col-lg-6">
+                            <div class="chat-bubble">
+                              <div class="chat-bubble-title">
+                                <div class="row">
+                                  <div class="col chat-bubble-author">Mallory Hulme</div>
+                                  <div class="col-auto chat-bubble-date">09:34</div>
+                                </div>
+                              </div>
+                              <div class="chat-bubble-body">
+                                <p>Sure Paweł, let me pull the latest updates.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       -->
+                    </div>
+                  </div>
+                <div class="d-flex justify-content-center align-items-end w-100 mb-3">
+                    <div style="width:50%">
+                        <div class="row g-2" >
+                            <div class="col">
+                              <input type="text" class="form-control search" id="chat-message-input" placeholder="Search for…" >
+                            </div>
+                            <div class="col-auto">
+                              <a href="#" class="btn btn-icon search-btn" id="search-btn" aria-label="Button">
+                               
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+                              </a>
+                            </div>
+                          </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
+    </body>
+</html>

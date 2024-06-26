@@ -1,0 +1,113 @@
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top" >
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="d-flex justify-content-between w-100">
+                <a class="navbar-brand " href="#" style="color:white;font-size:30px">Financ<span class="brand">E</span>d</a>
+                <div class="navbar-nav text-center" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav mb-2 mb-lg-0 gap-4">
+                        <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="#learn">Learn</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'post_list' %}">Social</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                        <a class="nav-link" href={% url "signup" %}>Login</a>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="navbar-nav flex-row order-md-last" style="margin-right: 20px ;">
+                    
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
+                        <span class="avatar avatar-sm rounded-circle" style="background-image: url('https://preview.tabler.io/static/photos/young-entrepreneur-working-from-a-modern-cafe.jpg')"></span>
+                        <div class="d-block ps-2 fs-4">
+                            <div class="text-white userName" style="text-transform: capitalize;"></div>
+                            <div class="mt-1 text-green user-role" style="text-transform: capitalize;"></div>
+                        </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <!-- <a href="#" class="dropdown-item">Status</a> -->
+                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                        <!-- <a href="#" class="dropdown-item">Feedback</a> -->
+                        <div class="dropdown-divider"></div>
+                        <a href="./settings.html" class="dropdown-item">Settings</a>
+                        <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            
+        </div>
+    </nav> 
+
+    <script>
+        $(document).ready(function() {
+    let currentUserId = JSON.parse(localStorage.getItem('currentUser')).id;
+    
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+    
+    function getCsrfToken() {
+        return getCookie('csrftoken') || document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    }
+    
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^GET|HEAD|OPTIONS|TRACE$/i.test(settings.type))) {
+                xhr.setRequestHeader("X-CSRFToken", getCsrfToken());
+            }
+        }
+    });
+    function getCurrentUserInfo(){
+        $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:8000/api/socialmedia/user/info",
+            data: {
+                'userId': currentUserId,
+            },
+            success: function(response) {
+                console.log(response);
+                $(".userName").html(response.user.username)
+                $(".user-role").html(response.user.role)
+                // $("#following").html(response.following_count)
+                // $("#suggested-users").html(nonFolloing_users)
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    getCurrentUserInfo()
+})
+    </script>
+
+</header>

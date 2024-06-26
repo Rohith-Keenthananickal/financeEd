@@ -1,5 +1,32 @@
 $(document).ready(function() {
     let currentUserId = JSON.parse(localStorage.getItem('currentUser')).id;
+
+    function getQueryParams() {
+        var params = {};
+        var search = window.location.search.substring(1); // Remove the '?' at the beginning
+        if (search) {
+            var pairs = search.split("&");
+            for (var i = 0; i < pairs.length; i++) {
+                var pair = pairs[i].split("=");
+                params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            }
+        }
+        return params;
+    }
+
+    // Get the query parameters
+    var queryParams = getQueryParams();
+    
+    // Get the userId from query parameters
+    var userId = queryParams["userId"];
+    currentUserId = userId
+    
+    if (userId) {
+        console.log("User ID: " + userId);
+        // You can now use the userId variable in your script
+    } else {
+        console.log("No userId found in the URL.");
+    }
     
     function getCookie(name) {
         let cookieValue = null;

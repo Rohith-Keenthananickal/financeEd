@@ -60,7 +60,7 @@ $(document).ready(function() {
                     </div>
                   </div>
                   <div class="d-flex">
-                    <a href="#" class="card-btn">
+                    <a class="card-btn viewProfileButton cursor-pointer" data-user-id="${items.id}">
                      
                       View Profile</a>
                     
@@ -76,7 +76,16 @@ $(document).ready(function() {
                 console.log(recipientId);
 
                 
-
+                $(".viewProfileButton").click(function(){
+                    // Get the user ID from the button's data attribute
+                    var userId = $(this).data("user-id");
+                    
+                    // Construct the new URL with the userId as a query parameter
+                    var newUrl = "http://127.0.0.1:8000/socialmedia/profile?userId=" + userId;
+                    
+                    // Redirect to the new URL
+                    window.location.href = newUrl;
+                });
              
             },
             error: function(xhr, status, error) {
@@ -88,7 +97,7 @@ $(document).ready(function() {
     listFollowingUsers();
 
 
-
+    
     
 
         
