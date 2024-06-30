@@ -114,3 +114,7 @@
 .typing-effect {
     white-space: pre-line;
 }
+
+.nav-link{
+    color: #FFF !important;
+}

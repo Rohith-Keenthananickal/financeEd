@@ -55,3 +55,7 @@ header{
 .d-hidden{
     visibility: hidden;
 }
+
+.page{
+    min-height: 100px !important;
+}

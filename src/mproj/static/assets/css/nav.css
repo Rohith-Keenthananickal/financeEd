@@ -218,7 +218,7 @@ body.back-bg-black {
 /* Cursor style */
 
 
-i{
+/* i{
 position: absolute;
 
 width: 1px;
@@ -244,5 +244,5 @@ animation: animate 3s linear forwards;
         transform: translate(var(--x), var(--y));
     }
     
-}
+} */
 

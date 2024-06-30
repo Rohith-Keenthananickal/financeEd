@@ -33,6 +33,9 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     let currentUserId = JSON.parse(localStorage.getItem('currentUser')).id;
+    if(!currentUserId){
+        window.location.href = '/signup';
+    }
     let reactionData = [];
 
     function getCookie(name) {

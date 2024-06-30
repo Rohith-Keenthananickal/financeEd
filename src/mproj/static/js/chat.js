@@ -62,7 +62,7 @@ $(document).ready(function() {
                             </div>
                             <div class="col text-body">
                                 <div>${items.username}</div>
-                                <div class="text-secondary text-truncate w-100">Sure Paweł, let me pull the latest updates.</div>
+                               
                             </div>
                             </div>
                         </a>`

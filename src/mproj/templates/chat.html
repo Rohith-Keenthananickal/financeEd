@@ -19,6 +19,8 @@
     <!-- <link rel="stylesheet" href="{% static 'style/main.css' %}"> -->
     <!-- <link rel="stylesheet" href="{% static 'style/style.css' %}"> -->
     <link rel="stylesheet" href="{% static 'style/chat.css' %}">
+    <link href="{% static 'assets/css/nav.css' %}" rel="stylesheet">
+
     <script src="
 https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
 "></script>
@@ -27,7 +29,7 @@ https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
     <title>Chat</title>
 </head>
 <body>
-  {% include 'common-header.html' %}
+  {% include "cusnav.html" %}
        <div class="page-wrapper">
         <!-- Page header -->
         <div class="page-header">

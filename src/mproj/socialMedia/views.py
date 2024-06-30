@@ -13,6 +13,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
+from django.shortcuts import redirect
 
 @csrf_exempt
 def toggle_reaction(request):
@@ -43,36 +44,14 @@ def toggle_reaction(request):
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-# @csrf_exempt
-# def react_to_post(request, post_id):
-#     if request.method == 'POST':
-#         userId = request.session['userId']
-#         post = Post.objects.get(id=post_id)
-#         reaction = request.POST.get('reaction')
 
-#         if Reaction.objects.filter(user=userId, post=post, reaction=reaction).exists():
-#             user = User.objects.filter(id=userId).first()
-#             reaction = Reaction.objects.filter(user=user, post=post).values()
-#         else:
-#             user = User.objects.filter(id=userId).first()        
-#             saveReaction = Reaction(user=user, post=post, reaction=reaction)
-#             saveReaction.save()
-
-#         if reaction == 'like':
-#             post.likes_count += 1
-#         elif reaction == 'dislike':
-#             post.dislikes_count += 1
-#         elif reaction == 'report':
-#             post.reports_count += 1
-
-#         post.save()
-#         return JsonResponse({'message': 'Reaction recorded.'})
-
-#     return JsonResponse({'error': 'Invalid request.'}, status=400)
-
-# @login_required
 def post_list(request):
-    userId = request.session['userId']
+    try:
+        userId = request.session['userId']
+    except KeyError:
+        return redirect('signup')
+    if not userId:
+        return redirect('signup')
     posts = Post.objects.all()
     users = User.objects.all()
     user_reactions = Reaction.objects.filter(user_id=userId)

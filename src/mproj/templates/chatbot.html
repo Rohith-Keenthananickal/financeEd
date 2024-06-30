@@ -17,14 +17,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler-vendors.min.css">
     <!-- <link rel="stylesheet" href="{% static 'style/main.css' %}"> -->
+
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <link rel="stylesheet" href="{% static 'style/chatbot.css' %}">
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+    <link href="{% static 'assets/css/nav.css' %}" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/chatbot.js' %}"></script>
     <title>Chatbot</title>
 </head>
     <body>
-        {% include 'common-header.html' %}
+      {% include "cusnav.html" %}
         <div id="main-container">
             <div class="d-flex flex-column justify-content-between align-items-center h-100 w-100" id="search-container">
                 <div class="center-part">
