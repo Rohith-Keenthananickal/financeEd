@@ -19,6 +19,8 @@
     <!-- <link rel="stylesheet" href="{% static 'style/main.css' %}"> -->
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <link rel="stylesheet" href="{% static 'style/profile.css' %}">
+    <link href="{% static 'assets/css/nav.css' %}" rel="stylesheet">
+
     <script src="
 https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
 "></script>
@@ -27,66 +29,8 @@ https://cdn.jsdelivr.net/npm/date-fns@3.6.0/cdn.min.js
     <title>Profile</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-dark fixed-top" >
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-               
-                <div class="d-flex justify-content-between w-100">
-                    <a class="navbar-brand " href="#" style="color:white;font-size:30px">Financ<span class="brand">E</span>d</a>
-                    <div class="navbar-nav text-center" id="navbarTogglerDemo03">
-                        <ul class="navbar-nav mb-2 mb-lg-0 gap-4">
-                            <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link text-white" href="#about">About</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link text-white" href="#learn">Learn</a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'post_list' %}">Social</a>
-                            </li>
-                            <!-- <li class="nav-item">
-                            <a class="nav-link" href={% url "signup" %}>Login</a>
-                            </li> -->
-                        </ul>
-                    {% comment %} <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 180px;">
-                        <button class="btn btn-outline" style="background-color:rgb(255, 165, 9);font-size:20px" type="submit">Search</button>
-                    </form> {% endcomment %}
-                    </div>
-                    <div class="navbar-nav flex-row order-md-last">
-                        
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                            <span class="avatar avatar-sm rounded-circle" style="background-image: url('https://preview.tabler.io/static/photos/young-entrepreneur-working-from-a-modern-cafe.jpg')"></span>
-                            <div class="d-none d-xl-block ps-2 fs-4">
-                                <div class="text-white userName" style="text-transform: capitalize;"></div>
-                                <div class="mt-1 small text-secondary user-role" style="text-transform: capitalize;">UI Designer</div>
-                            </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="#" class="dropdown-item">Status</a>
-                            <a href="./profile.html" class="dropdown-item">Profile</a>
-                            <a href="#" class="dropdown-item">Feedback</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="./settings.html" class="dropdown-item">Settings</a>
-                            <a href="./sign-in.html" class="dropdown-item">Logout</a>
-                            </div>
-                        </div>
-                    </div>
+  {% include "cusnav.html" %}
 
-                    
-                </div>
-                
-            </div>
-        </nav> 
-    
-       </header>
     <section class="h-100">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center">

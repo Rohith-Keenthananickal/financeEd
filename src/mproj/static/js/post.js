@@ -340,19 +340,39 @@ $(document).ready(function() {
                 folloing_users += `<div>
                 <div class="row">
                     <div class="col-auto">
-                        <span class="avatar rounded-circle">JL</span>
+                        <span class="avatar rounded-circle">${items.short_name}</span>
                     </div>
                     <div class="col">
                         <div class="text-truncate">
                             <strong class="fs-5">${items.username}</strong>
                         </div>
-                        <div class="text-blue cursor-pointer fs-5">Message</div>
+                        <div class="text-blue cursor-pointer fs-5 unfollow-btn" data-user-id="${items.id}">Unfollow</div>
                     </div>
 
                 </div>
                  </div>`
                 })
                 $("#following-users").html(folloing_users)
+                $(".unfollow-btn").click(function() {
+                    let followingUserId = $(this).data('user-id');
+                    console.log(followingUserId);
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://127.0.0.1:8000/api/socialmedia/user/follow",
+                        data: {
+                            'follower': currentUserId,
+                            'following' : followingUserId
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            listFollowingUsers();
+                            listUnFollowingUsers();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                })
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
@@ -379,7 +399,7 @@ $(document).ready(function() {
                     nonFolloing_users += `<div>
                                           <div class="row">
                                               <div class="col-auto">
-                                                  <span class="avatar rounded-circle">JL</span>
+                                                  <span class="avatar rounded-circle">${items.short_name}</span>
                                               </div>
                                               <div class="col-auto">
                                                   <div class="text-truncate">
@@ -388,7 +408,7 @@ $(document).ready(function() {
                                                   <div class="text-muted fs-5">Suggested for you</div>
                                               </div>
                                               <div class="col d-flex align-items-center justify-content-end">
-                                                  <div class="text-blue cursor-pointer fs-5">
+                                                  <div class="text-blue cursor-pointer fs-5 follow-btn" data-user-id="${items.id}">
                                                       Follow
                                                   </div>
                                               </div>
@@ -398,6 +418,27 @@ $(document).ready(function() {
                                       </div>`
                 })
                 $("#suggested-users").html(nonFolloing_users)
+
+                $(".follow-btn").click(function() {
+                    let followingUserId = $(this).data('user-id');
+                    console.log(followingUserId);
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://127.0.0.1:8000/api/socialmedia/user/follow",
+                        data: {
+                            'follower': currentUserId,
+                            'following' : followingUserId
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            listFollowingUsers();
+                            listUnFollowingUsers();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                })
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
@@ -407,5 +448,7 @@ $(document).ready(function() {
     }
 
     listUnFollowingUsers();
+
+   
 });
 

@@ -11,19 +11,13 @@ strong{
     color:#FFF;
 }
 
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
     .container, .container-lg, .container-md, .container-sm, .container-xl {
         max-width: 1210px;
     }
-}
+} */
 
-header{
-    position: fixed !important;
-    width: 100%;
-    z-index: 100;
-    background-color: black !important;
 
-}
 
 /* header nav{
     min-height:70px !important;
@@ -52,9 +46,9 @@ header{
 } */
 
 
-.d-hidden{
+/* .d-hidden{
     visibility: hidden;
-}
+} */
 
 .page{
     min-height: 100px !important;

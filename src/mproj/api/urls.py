@@ -1,9 +1,13 @@
 # urls.py
-from django.urls import path
+from django.urls import path,re_path
 from socialMedia import views as socialViews
 from adminapp import views as adminappView
+from .swagger import schema_view
 
 urlpatterns = [
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('socialmedia/post/list', socialViews.listPosts, name='listPosts'),
     path('socialmedia/post', socialViews.savePost, name='savePost'),
     path('socialmedia/post/reactions', socialViews.listReactions, name='listReactions'),

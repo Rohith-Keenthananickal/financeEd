@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'drf_yasg'
 ]
 
 AUTH_USER_MODEL = 'adminapp.User'
@@ -137,3 +138,9 @@ MEDIA_URL='/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL ='adminapp.User'
+
+import utils.swaggerUtils as swaggerUtils
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': swaggerUtils.CustomAutoSchema  # Replace with the actual path to your CustomAutoSchema
+}
