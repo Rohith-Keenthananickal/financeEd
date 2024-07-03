@@ -108,6 +108,7 @@ $(document).ready(function() {
                                             </div>
                                             
                                         </div>
+
                                         
                                         <div class="d-flex align-items-center" id="dislike-icon-container-${items.id}">
                                             <i class="ti ti-thumb-down fs-2 cursor-pointer text-white dislike-btn" data-post-id2="${items.id}" data-reaction="like"
@@ -116,6 +117,14 @@ $(document).ready(function() {
                                             ${userdisliked ? '' : 'style="display:none;"'}></i>
                                             <span class="dislikes-count text-white fs-5">${items.dislikes_count}</span>
                                         </div>
+                                        <div>
+                                            <div class="d-flex align-items-center" id="like-icon-container-${items.id}">
+                                                <i class="ti ti-message text-white fs-2 cursor-pointer"></i>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex gap-2 align-items-center mt-2 flex-wrap">
                                         <div class="text-white fw-bold fs-5">${items.user.username}</div>

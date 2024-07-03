@@ -315,3 +315,6 @@ def add_comment_to_post(request, pk):
 
 def chatbot(request):
     return render(request,'chatbot.html')
+
+def nav_page(request):
+    return render(request, 'navigation.html')

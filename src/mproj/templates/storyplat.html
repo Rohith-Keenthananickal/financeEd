@@ -9,13 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story Mode Modules</title>
-    <link rel="stylesheet" href={% static "style/Styles.css" %}> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{% static 'style/Styles.css' %}"> <!-- Link to your CSS file -->
+    <link href="{% static 'assets/css/nav.css' %}" rel="stylesheet">
 </head>
 <body class="back-bg-black">
 
 
 
-    {% include 'common-header.html' %}
+    <iframe src="{% url 'nav_page' %}" style="border: none; width: 100%; height: 200px;"></iframe>
 
     <!-- Story Mode Modules -->
     <div class="container">
@@ -212,7 +213,7 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
 </body>
 </html>
 

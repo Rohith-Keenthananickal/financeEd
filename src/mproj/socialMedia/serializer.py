@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from socialMedia.models import Follow, Message, Post, Reaction
+from socialMedia.models import Follow, Message, Post, Reaction,Comments
 from adminapp.models import User
 
 
@@ -15,6 +15,14 @@ class PostSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 1
 
+
+class CommentsSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    # post = PostSerializer()
+    class Meta:
+        model = Comments
+        exclude = ['post']
+        depth = 1
 
 class PostSerializerWithoutUser(serializers.ModelSerializer):
     class Meta:

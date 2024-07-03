@@ -5,8 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-from socialMedia.serializer import CreatePostSerializer, FollowUsersSerializer, MessageSerializer, PostReactionSerializer, PostSerializer, UserSerializer
-from .models import Follow, Post, Reaction, PostReaction, Message
+from socialMedia.serializer import CreatePostSerializer, FollowUsersSerializer, MessageSerializer, PostReactionSerializer, PostSerializer, UserSerializer,CommentsSerializer
+from .models import Follow, Post, Reaction, PostReaction, Message, Comments
 from adminapp.models import User,Student
 from django.db.models import F
 from rest_framework.decorators import api_view
@@ -356,4 +356,31 @@ def chat(request):
 def getAllStudents(request):
     students = Student.objects.filter(role = "STUDENT")
     serializer = UserSerializer(students, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def postComment(request):
+    data = request.data
+    user_id = data.get('userId')
+    post_id = data.get('postId')
+    comment_text = data.get('comment')
+
+    try:
+        user = User.objects.get(id=user_id)
+        post = Post.objects.get(id=post_id)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Post.DoesNotExist:
+        return Response({'error': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    comment = Comments(user=user, post=post, comment=comment_text)
+    comment.save()
+    return Response({'message': 'Comment posted successfully'}, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET'])
+def getComments(request, post_id):
+    comments = Comments.objects.filter(post=post_id)
+    serializer = CommentsSerializer(comments, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)

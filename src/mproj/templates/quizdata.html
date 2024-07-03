@@ -1,5 +1,4 @@
 {% load static %}
-{% include "cusnav.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,39 +22,7 @@
     <div class="video-overlay"></div>
 
     <!-- Nav -->
-    <nav class="navbar navbar-expand-lg navbar-bg-grey">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <span class="logo-text">Financ<span class="logo-letter">E</span>d</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#learn">Learn</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#social">Social</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link cus-btn" href="#login">Login</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    <iframe src="{% url 'nav_page' %}" style="border: none; width: 100%; height: 200px;"></iframe>
 
     <div class="container">
         <div class="row justify-content-center">
