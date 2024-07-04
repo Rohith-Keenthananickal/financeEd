@@ -122,6 +122,9 @@ $(document).ready(function() {
                                                 <i class="ti ti-message text-white fs-2 cursor-pointer"></i>
                                                 
                                             </div>
+
+
+                                            
                                             
                                         </div>
                                         
