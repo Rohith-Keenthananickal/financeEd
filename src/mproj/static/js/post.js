@@ -118,11 +118,9 @@ $(document).ready(function() {
                                             <span class="dislikes-count text-white fs-5">${items.dislikes_count}</span>
                                         </div>
                                         <div>
-                                            <div class="d-flex align-items-center" id="like-icon-container-${items.id}">
-                                                <i class="ti ti-message text-white fs-2 cursor-pointer"></i>
-                                                
+                                            <div class="d-flex align-items-center comment-btn" data-post-id="${items.id}">
+                                                <i class="ti ti-message text-white fs-2 cursor-pointer "  data-bs-toggle="modal" data-bs-target="#modal-simple"></i>   
                                             </div>
-
                                         </div>
                                         
                                     </div>
@@ -130,9 +128,133 @@ $(document).ready(function() {
                                         <div class="text-white fw-bold fs-5">${items.user.username}</div>
                                         <div class="text-white fs-5 fw-light">${items.description}</div>
                                     </div>
-                                </div>`;
+                                </div>
+                                <div class="modal modal-blur fade" id="modal-simple" tabindex="-1" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Comments</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card">
+                                        <div class="card-body">
+                                            <div class="divide-y comment-section">
+                                           
+                                            
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="mb-3 w-100">
+                                        <label class="form-label">Enter Your Comment</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control comment-box" placeholder="Type Something…" spellcheck="false" data-ms-editor="true">
+                                            <button class="btn btn-primary post-comment" type="button" data-bs-dismiss="modal">Comment</button>
+                                        </div>
+                             
+                                     </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                `;
                         });
                         $("#posts-container").html(html_items);
+
+
+                        $(".comment-btn").click(function(){
+                            let id = $(this).data('post-id');
+                            console.log(id);
+                            
+                            function getComments(){
+                                $.ajax({
+                                    type: 'GET',
+                                    url: `http://127.0.0.1:8000/api/socialmedia/post/comments/${id}`,
+                                    // data: {
+                                    //     'currentUserId': currentUserId,
+                                    // },
+                                    success: function(response) {
+                                        console.log(response);
+                                        let comments =""
+                                        response.forEach((items) => {
+                                            
+                                            comments += ` <div>
+                                                    <div class="row">
+                                                    <div class="col-auto">
+                                                        <span class="avatar">${items.user.short_name}</span>
+                                                    </div>
+                                                    <div class="col d-flex align-items-center">
+                                                        <div class="text-truncate">
+                                                            <strong class="text-black fw-bold"> ${items.user.username}</strong> commented on your Post <strong class="text-black fw-bold">"${items.comment}"</strong>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    </div>
+                                                </div>`
+                                        })
+                                        $(".comment-section").html(comments)
+                        
+                                       
+    
+                                        
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('Error:', error);
+                                    }
+                                });
+                            }
+
+                            getComments();
+                            $(".post-comment").click(function(){
+                                let comment = $(".comment-box").val();
+                                console.log(comment);
+                                $.ajax({
+                                    type: 'POST',
+                                    url: `http://127.0.0.1:8000/api/socialmedia/post/comment`,
+                                    data: {
+                                        'userId': currentUserId,
+                                        'postId' : id,
+                                        'comment' : comment
+                                    },
+                                    success: function(response) {
+                                        console.log(response);
+                                        $(".comment-box").val("");
+                                        getComments();
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('Error:', error);
+                                    }
+                                });
+                            })
+                            
+                        });
+
+                        $(".follow-btn").click(function() {
+                            let followingUserId = $(this).data('user-id');
+                            console.log(followingUserId);
+                            $.ajax({
+                                type: 'POST',
+                                url: "http://127.0.0.1:8000/api/socialmedia/user/follow",
+                                data: {
+                                    'follower': currentUserId,
+                                    'following' : followingUserId
+                                },
+                                success: function(response) {
+                                    console.log(response);
+                                    listFollowingUsers();
+                                    listUnFollowingUsers();
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('Error:', error);
+                                }
+                            });
+                        })
+
+                        
+
+
                     },
                     error: function(error) {
                         console.log("Error");
@@ -458,6 +580,9 @@ $(document).ready(function() {
 
     listUnFollowingUsers();
 
+
+    
+    
    
 });
 
