@@ -90,7 +90,9 @@ $(document).ready(function() {
                             html_items += `
                                 <div class="card card-sm mb-4" id="post-${items.id}" data-post-id="${items.id}">
                                     <div class="d-flex align-items-center mb-2">
-                                        <span class="avatar me-3 rounded-circle" style="background-image: url(http://127.0.0.1:8000/${items.image})"></span>
+                                        <span class="avatar me-3 rounded-circle">
+                                            ${items.user.short_name}
+                                        </span>
                                         <div>
                                             <div class="text-white fs-4">${items.user.username}</div>
                                             <div class="text-secondary fs-5">${timeAgo(items.created_at)}</div>

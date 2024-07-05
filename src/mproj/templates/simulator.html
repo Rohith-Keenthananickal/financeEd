@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple ATM Simulator</title>
+    <link rel="stylesheet" href="{% static 'style/simpleatmsim.css' %}">
+</head>
+<body class="back-bg-black">
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="main-heading">Simple ATM Simulator</h2>
+                <div class="atm-image-container">
+                    <img src="{% static 'images/atmGuide.png' %}" alt="ATM Image" class="atm-image">
+                </div>
+                <div class="options-container">
+                    <div class="option">
+                        <a href="{% url 'simulatorTwo' %}" class="option-link">
+                            <p class="option-label">🎯 Challenge: 1, Find Balance</p>
+                        </a>
+                    </div>
+                    <div class="option">
+                        <p class="option-label">S🎯 Challenge: 2, Comming soon!</p>
+                    </div>
+                    <div class="option">
+                        <p class="option-label">🎯 Challenge: 3, Comming soon!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>

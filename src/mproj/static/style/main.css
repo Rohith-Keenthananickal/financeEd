@@ -476,3 +476,174 @@ container .card:hover {
         left:80%;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* To Gold */
+.heading .toGold {
+    font-size: 5rem;
+    color: white;
+    text-align: center;
+    transition: 1.5s ease;
+}
+
+.heading .toGold:hover {
+    color: gold;
+}
+
+.learning-corner h2 {
+    padding-top: 15rem;
+    font-size: 0.5rem;
+}
+
+.LCcontainer {
+    position: relative;
+    max-width: 100%; 
+    margin: 5rem auto;
+    padding: 5rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.LCcontainer .LCcard {
+    position: relative;
+    width: 22rem;
+    height: 35rem; 
+    background: black;
+    margin: 5rem; 
+    border-radius: 5rem;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 2.5rem whitesmoke;
+    transition: 0.4s ease-in-out;
+}
+
+.LCcontainer:hover .LCcard {
+    filter: blur(0.05rem); 
+    transform: scale(0.9);
+    opacity: 0.8;
+    box-shadow: 0 1.5rem 2.5rem yellowgreen;
+}
+
+.LCcontainer .LCcard:hover {
+    filter: blur(0);
+    transform: scale(1.1);
+    opacity: 1;
+    height: 35rem; /* Increase the height on hover */
+}
+
+.LCcontainer .LCcard .circle {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    clip-path: circle(11rem at center 0); 
+    text-align: center;
+}
+
+.LCcontainer .LCcard .circle h2 {
+    color: whitesmoke;
+    font-size: 3rem; 
+    padding: 2rem;
+}
+
+.LCcontainer .LCcard .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.LCcontainer .LCcard .content img, 
+.LCcontainer .LCcard .content p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transition: opacity 0.9s ease-in-out;
+}
+
+.LCcontainer .LCcard .content img {
+    max-width: 100%;
+    max-height: 70%;
+}
+
+.LCcontainer .LCcard .content p {
+    color: whitesmoke;
+    font-size: 1.6rem;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.LCcontainer .LCcard:hover .content img {
+    opacity: 0; /* Hide the image on hover */
+}
+
+.LCcontainer .LCcard:hover .content p {
+    opacity: 1; /* Show the paragraph on hover */
+}
+
+.LCcontainer .LCcard .content a {
+    position: absolute;
+    bottom: 10px;
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: #000;
+    color: #fff;
+    border-radius: 4rem;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    font-size: 1.6rem;
+    transition: 0.3s ease;
+}
+
+.LCcontainer .LCcard .content a:hover {
+    transform: scale(1.3);
+}
+
+.LCcontainer .LCcard:nth-child(1) .circle,
+.LCcontainer .LCcard:nth-child(1) .content a {
+    background: #31bef1de;
+}
+
+.LCcontainer .LCcard:nth-child(2) .circle,
+.LCcontainer .LCcard:nth-child(2) .content a {
+    background: #ff6962;
+}
+
+.LCcontainer .LCcard:nth-child(3) .circle,
+.LCcontainer .LCcard:nth-child(3) .content a {
+    background: #b042ff;
+}
+
+.LCcontainer .LCcard:nth-child(4) .circle,
+.LCcontainer .LCcard:nth-child(4) .content a {
+    background: #bf1277;
+}
+
+.LCcontainer .LCcard:nth-child(5) .circle,
+.LCcontainer .LCcard:nth-child(5) .content a {
+    background: #bf1212;
+}

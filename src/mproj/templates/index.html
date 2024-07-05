@@ -289,53 +289,63 @@
             </div>
     
         </section>    
-        <div class="learning-corner" id="learn">
-
-            <h2 class="heading"><span class="toGold">The Learning Corner</h2>
-            <div class="container">
-                <div class="card">
+        <div class="learning-corner">
+            <h2 class="heading"><span class="toGold">The Learning Corner</span></h2>
+            <div class="LCcontainer">
+                <div class="LCcard">
                     <div class="circle">
                         <h2>CHATBOT</h2>
                     </div>
                     <div class="content">
-                        <img src="{% static 'images/logotransp.png' %}" alt="">
-                        {% comment %} <a href="#" style="transform: translateX(120%);"></a> {% endcomment %}
+                        <img src="images/logotransp.png" alt="">
+                        <p>Ask finance questions and get instant answers with our interactive chatbot!</p>
+                        <a href="#">GO</a>
                     </div>
                 </div>
-                <div class="card">
+                <div class="LCcard">
                     <div class="circle">
-                        <h2>STORY</h2>
-                    </div>
-                    <div class="content" style="text-align: center;">
-                        <img src="{% static 'images/logotransp.png' %}" alt="">
-                        {% comment %} <a href={% url "story" %} style="transform: translateX(120%); display: block; margin: 0 auto;">GO</a> {% endcomment %}
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="circle">
-                        <h2>LISTEN</h2>
+                        <h2>STORY MODE</h2>
                     </div>
                     <div class="content">
-                        <img src="{% static 'images/logotransp.png' %}" alt="">
-                        {% comment %} <a href="#" style="transform: translateX(120%);"></a> {% endcomment %}
+                        <img src="images/logotransp.png" alt="">
+                        <p>Discover finance basics through engaging and relatable stories</p>
+                        <a href="#">GO</a>
+                     </div>
+                </div>
+                <div class="LCcard">
+                    <div class="circle">
+                        <h2>LISTEN MODE</h2>
+                    </div>
+                    <div class="content">
+                        <img src="images/logotransp.png" alt="">
+                        <p>Learn financial concepts with our easy-to-follow audio lessons</p>
+                        <a href="#">GO</a>
                     </div>
                 </div>
-            </div> 
-        </div>
-
-{% comment %} <div class="container">
-            <div class="card">
-                <div class="circle">
-                    <h2>CHATBOT</h2>
+                <div class="LCcard">
+                    <div class="circle">
+                        <h2>SIMULATOR</h2>
+                    </div>
+                    <div class="content">
+                        <img src="images/logotransp.png" alt="">
+                        <p>Try our simple simulators to grasp real-world financial scenarios.</p>
+                        <a href="#">GO</a>
+                     </div>
                 </div>
-                <div class="content">
-                    <img src="{% static 'images/logotransp.png' %}" alt="">
-                    <p>A chatbot is a software application used to conduct an online chat conversation via text or text-to-speech.</p>
-                    <a href="#" style="transform: translateX(120%);">GO</a>
+                <div class="LCcard">
+                    <div class="circle">
+                        <h2>VIDEOS</h2>
+                    </div>
+                    <div class="content">
+                        <img src="images/logotransp.png" alt="">
+                        <p>Enjoy animated videos that make learning finance fun and easy</p>
+                        <a href="#">GO</a>
+                    </div>
                 </div>
             </div>
-            <!-- Similarly for other cards -->
-        </div> {% endcomment %}
+        </div>
+
+
         
         <footer class="footer">
             <div class="container">
@@ -343,9 +353,7 @@
             </div>
         </footer> 
       </main>
-      {% comment %} <button class="float-button" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">
-        <img src="{% static 'images/chat.svg' %}" alt="" srcset="">
-      </button> {% endcomment %}
+
     <script src="{% static 'style/main.css' %}"></script>
     <script src="{% static 'style/js/bootstrap.js' %}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

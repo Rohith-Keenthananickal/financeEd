@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Learning Simulator Challenge 1: Check Balance Amount</title>
+    <link rel="stylesheet" href="{% static 'style/ATMchallenge1_CheckBalance.html.css' %}">
+</head>
+
+<body class="back-bg-black">
+    <div class="challenge-card" id="challenge-card">
+        <p><strong>🎯Challenge:</strong> Find the balance amount in the savings account</p>
+        <p>ATM Account Number: <span class="account-number">123 456 789</span></p>
+        <p>PIN: <span class="pin">5165</span></p>
+    </div>
+
+
+
+    <div class="atm-container" id="atm-container">
+        <div class="camera-container">
+
+            <div class="camera">
+                <img src="{% static 'images/camera_lens.png' %}" alt="Camera Lens">
+            </div>
+            
+        </div>
+
+        <div class="screen-container">
+
+            <div class="side-buttons left-buttons">
+                <div class="button"></div>
+               <div class="button" data-action="mobile-banking"></div>
+               <div class="button" data-action="pin-change"></div>
+               <div class="button" data-action="others"></div>
+            </div>
+
+            
+        <div class="screen">
+            <!-- Screen content goes here -->
+            <img src="{% static 'images/ATMFinancEdWelcome.gif' %}" alt="Welcome, Please Insert Your Card" id="screen-image" class="screen-image">
+            <input type="password" id="pin-input" maxlength="4" class="pin-input" style="display: none;">
+
+
+            <div class="transaction-buttons" id="transaction-buttons">
+                <div></div>
+
+                <div class="transaction-button" id="fast-cash">Fast Cash</div>
+
+                <div class="transaction-button" id="mobile-banking">Mobile Banking Registration</div>
+
+                <div class="transaction-button" id="withdrawal">Withdrawal</div>
+
+                <div class="transaction-button" id="pin-change">Pin Change</div>
+
+                <div class="transaction-button" id="balance-inquiry">Balance Inquiry</div>
+
+                <div class="transaction-button" id="others">Others</div>
+
+                <div class="transaction-button" id="mini-statement">Mini Statement</div>
+            </div>
+
+            <!-- New buttons for Balance Inquiry screen -->
+            <div class="balance-inquiry-buttons"  style="display: none;">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="transaction-button" id="credit">Credit</div>
+                <div></div>
+                <div class="transaction-button" id="current">Current</div>
+                <div></div>
+                <div class="transaction-button" id="savings">Savings</div>
+            </div>
+
+        </div>
+        
+
+        <div class="side-buttons right-buttons">
+            <div class="button" data-action="fast-cash"></div>
+            <div class="button" data-action="withdrawal"></div>
+            <div class="button" data-action="balance-inquiry"></div>
+            <div class="button" data-action="mini-statement"></div>
+        </div>
+
+              <!-- New buttons for Balance Inquiry screen -->
+        <div class="side-buttons right-buttons balance-inquiry-buttons" style="display: none;">
+            <div class="button" data-action="credit"></div>
+            <div class="button" data-action="current"></div>
+            <div class="button" data-action="savings"></div>
+        </div>
+
+
+    </div>
+    <div class="main-panel">
+        <div class="left-side">
+            <div class="receipt-printer">
+                <div class="slot"></div>
+            </div>
+        </div>
+        <div class="center-panel">
+            <div class="dialpad">
+               <div class="dial-button" data-value="1">1</div>
+                <div class="dial-button" data-value="2">2</div>
+                <div class="dial-button" data-value="3">3</div>
+                <div class="function-button clear">Clear</div>
+                <div class="dial-button" data-value="4">4</div>
+                <div class="dial-button" data-value="5">5</div>
+                <div class="dial-button" data-value="6">6</div>
+                <div class="function-button cancel">Cancel</div>
+                <div class="dial-button" data-value="7">7</div>
+                <div class="dial-button" data-value="8">8</div>
+                <div class="dial-button" data-value="9">9</div>
+                <div class="function-button enter">Enter</div>
+                <div class="dial-button" data-value=""></div>
+                <div class="dial-button" data-value="0">0</div>
+                <div class="dial-button" data-value=".">.</div>
+            </div>
+        </div>
+        <div class="right-side">
+
+            <div class="card-reader2">
+            </div> 
+
+            <div class="card-reader1">
+            </div>   
+
+            <div class="card-reader">
+            </div>
+
+      
+        </div>
+
+         <!-- Card Animation -->
+         <div class="card-animation-container" id="card-animation-container">
+            <img src="{% static 'images/card.png' %}" alt="ATM Card" id="atm-card">
+        </div>
+    </div>
+
+    <div class="cash-dispenser">
+        <div class="slot"></div>
+    </div>
+</div>
+
+<!-- Quiz Card -->
+<div class="quiz-card" id="quiz-card">
+    <div class="quiz-card-content">
+        <h2 class="card-header">Select the correct way to insert a card!</h2>
+        
+        <div class="options">
+            <div class="option custom-card card" id="option1">
+                <img src="{% static 'images/cardinsertwro.png' %}" alt="Option 1">
+            </div>
+            <div class="option custom-card card" id="option2">
+                <img src="{% static 'images/cardinsertcorr.png' %}" alt="Option 2">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="feedback" id="feedback"></div>
+
+
+
+
+<!-- Balance Quiz Card -->
+<div class="quiz2-card" id="quiz2-card">
+    <div class="quiz2-card-content">
+        <h2 class="card-header22">What was the balance amount?</h2>
+        
+        <div class="options2">
+            <div class="option22 custom-card22 card22" id="option11">
+                <img src="{% static 'images/op360.png' %}" alt="Option 1">
+            </div>
+            <div class="option22 custom-card card" id="option22">
+                <img src="{% static 'images/op6000.png' %}" alt="Option 2">
+            </div>
+            <div class="option22 custom-card card" id="option33">
+                <img src="{% static 'images/op3600.png' %}" alt="Option 3">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="quiz3-card" id="tryAgainCard">
+    <div class="quiz3-card-content">
+        <h2 class="card-header22">Try Again</h2>
+        
+        <div class="options3">
+            <div class="option33 card" id="option111">
+                <img src="{% static 'images/retrybutton.png' %}" alt="Retry">
+                <p>Option 111</p>
+            </div>
+            <div class="option33 card" id="option222">
+                <img src="{% static 'images/atmMenu.png' %}" alt="Home">
+                <p>Option 222</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="quiz4-card" id="completed">
+    <div class="quiz4-card-content">
+        <h2 class="card-header22">Challenge Complete!</h2>
+        
+        <div class="options4">
+            <div class="option44 card" id="option1111">
+                <img src="{% static 'images/retrybutton.png' %}" alt="Retry">
+                <p>Option 1111</p>
+            </div>
+            <div class="option44 card" id="option2222">
+                <img src="{% static 'images/atmMenu.png' %}" alt="Home">
+                <p>Option 2222</p>
+            </div>
+            <div class="option44 card" id="option3333">
+                <img src="{% static 'images/nextatm.png' %}" alt="Home">
+                <p>Option 3333</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- <div id="tryAgainCard" class="quiz-card" style="display:none;">
+    <h2>Try Again</h2>
+    <div class="options3"> 
+        <div class="option3" id="option111">
+            <img src="{% static 'images/retrybutton.png' %}" alt="Retry">
+            <p>Option 111</p>
+        </div>
+        <div class="option3" id="option222">
+            <img src="{% static 'images/atmMenu.png' %}" alt="Home">
+            <p>Option 222</p>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="conclusion" id="conclusion">
+    <h2>Peak</h2>
+    <div class="content">
+        <p>Insert card</p>
+        <p>Enter Pin</p>
+        <p>Check balance</p>
+        <p>Select the account type</p>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+
+    $(document).ready(function() {
+        $('.conclusion').click(function() {
+            $(this).toggleClass('expand');
+        });
+    });
+</script>
+
+
+
+<script src="{% static 'js/ATMchallenge1_CheckBalance.html.js' %}"></script>
+</body>
+</html>

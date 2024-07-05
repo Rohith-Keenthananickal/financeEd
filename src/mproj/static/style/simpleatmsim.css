@@ -1,0 +1,69 @@
+/* General Styles */
+body.back-bg-black {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh; /* Adjust height as needed */
+}
+
+.main-heading {
+    padding-top: 10rem;
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    text-align: center; /* Center align text */
+}
+
+.atm-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+    display: block; /* Ensure image is centered properly */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column; /* Display options column-wise */
+    align-items: center; /* Center align options */
+}
+
+.option {
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.3);
+    transition: background-color 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.option:hover {
+    background-color: rgba(128, 128, 128, 0.6);
+}
+
+.option-label {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.option-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+

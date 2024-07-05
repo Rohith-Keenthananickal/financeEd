@@ -120,6 +120,15 @@ def index(request):
     return render(request,'index.html')
 
 
+def simulator(request):
+    return render(request,'simulator.html')
+
+
+def simulatorTwo(request):
+    return render(request,'simulator-2.html')
+
+
+
 def sign_out(request):
     logout(request)
     return redirect('signup')

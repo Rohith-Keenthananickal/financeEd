@@ -1,0 +1,838 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 130vh;
+    background-color: #766f6f;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+body.back-bg-black {
+    background-color: rgb(0, 0, 0);
+    background-size: cover;
+    background-position: inherit;
+    background-repeat: no-repeat;
+}
+
+.challenge-card {
+    background-color: #3333338a;
+    color: rgb(25, 175, 220);
+
+    font-size: 32px;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.challenge-card p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+
+
+
+
+
+
+    .atm-container {
+    width: 900px;
+    height: 1000px;
+    background-color: #444;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(12, 6, 0, 0.975);
+    padding: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    }
+    
+
+
+
+
+    .camera-container {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    }
+    
+    .camera {
+    width: 70px;
+    height: 70px;
+    background-color: #2826268d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    
+    .camera img {
+    width: 70px;
+    height: 49px;
+    }
+
+    
+    .logo-text {
+        color: #fff;
+        font-size: 2.3rem;
+        font-weight: 300;
+    }
+    
+    .logo-letter {
+        color: yellowgreen;
+    }
+
+
+
+
+
+    .screen-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    }
+    
+    .screen {
+    flex-grow: 1;
+    height: 430px;
+    background-color: #222;
+    border-radius: 10px;
+    margin: 0 10px;
+
+    position: relative; 
+    }
+
+    .screen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    
+    .pin-input {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30%;
+        padding: 10px;
+        font-size: 54px;
+        text-align: center;
+        border: 5px solid #1446dbc0;
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        pointer-events: none;
+    }
+
+
+
+
+    .transaction-buttons {
+        display: none;
+        position: absolute;
+
+        top: 27%;
+        
+
+        left: 0;
+        width: 100%;
+        height: 60%;
+
+        padding: 20px;
+        box-sizing: border-box;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        column-gap: 50px;
+        row-gap: 30px;
+    }
+
+    .transaction-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: white;
+        background-color: #1446dbc0;
+        border: 5px solid #8ca3e8c0;
+
+        border-radius: 25px;
+        font-size: 26px;
+        font-weight: 500;
+        cursor: pointer;
+
+        transition: 0.3s ease-in;
+    }
+
+    .transaction-button:hover {
+        transform: scale(1.1);    
+    }
+
+    
+
+    .balance-inquiry-buttons{
+        display: none;
+        position: absolute;
+
+        top: 27%;
+        
+
+        left: 0;
+        width: 100%;
+        height: 60%;
+
+        padding: 20px;
+        box-sizing: border-box;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        column-gap: 50px;
+        row-gap: 30px;
+
+    }
+
+
+
+
+
+    
+    
+    .side-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    margin-top: 90px;
+    height: 250px;
+    }
+    
+    .button {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: ease-in 0.3s;
+    }
+    .button:hover {
+        background-color: #878383d6;
+        box-shadow: 0px 2px 3px rgba(12, 6, 0, 0.975);
+    }
+    
+
+    .main-panel {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    }
+    
+    .left-side, .right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    }
+    
+    .center-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    }
+    
+    .dialpad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 20px;
+    }
+    
+    .dial-button {
+    width: 60px;
+    height: 60px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: ease-in 0.3s;
+    }
+    .dial-button:hover
+    {
+    background-color: #bbb;
+    transform: scale(0.9);
+    }
+    
+    .function-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    
+    .function-button {
+    width: 90px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    transition: ease-in 0.3s;
+    }
+    .function-button:hover
+    {
+    opacity: 0.91;
+    transform: scale(0.9);
+    }
+    
+    .clear {
+    background-color: #f0c040;
+    }
+    
+    .cancel {
+    background-color: #e74c3c;
+    }
+    
+    .enter {
+    background-color: #2ecc71;
+    }
+    
+    .receipt-printer {
+    width: 100px;
+    height: 20px;
+    background-color: #555555f7;
+    border-radius: 10px;
+    position: relative;
+    }
+    
+    .receipt-printer .slot {
+    width: 95%;
+    height: 8px;
+    background-color: #333;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    }
+    
+    .cash-dispenser {
+    width: 90%;
+    height: 70px;
+    background-color: #333;
+    border-radius: 10px;
+    position: relative;
+    }
+    
+    .cash-dispenser .slot {
+    width: 99%;
+    margin-left: 3px;
+    height: 25px;
+    background-color: #555555f7;
+    border-radius: 10px;
+    position: absolute;
+    }
+    
+    /* Quiz Card Styles */
+    .quiz-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: rgba(8, 7, 7, 0.355);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 yellowgreen;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: 0.8s ease;
+    }
+    
+    .quiz-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    }
+    
+    .card-header {
+    color: rgb(162, 238, 11);
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: 0.8s;
+    }
+    
+    .card-header
+    {
+    color: gold;
+    }
+    
+    .options {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 5rem;
+    }
+    
+    .option {
+    width: 45%;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    }
+    
+    .option:hover
+    {
+    transform: scale(1.05);
+    box-shadow: 0 9px 6px 0 rgb(0, 68, 255);
+    background: rgba(24, 22, 22, 0.516);
+    }
+    
+    .option img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Feedback Styles */
+    .feedback {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 2rem;
+    text-align: center;
+    z-index: 1001;
+    }
+    
+
+
+
+    
+
+    .card-reader2 {
+    width: 150px;
+    height: 134px;
+    background-color: #444;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    z-index: 2015;
+    
+    }
+    .card-reader1 {
+        width: 150px;
+        height: 30px;
+        background-color: #062111;
+        border-radius: 430px 430px 0px 0px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        animation: slotblink 1s infinite;
+        z-index: 1015;
+    }
+    
+    .card-reader {
+        width: 150px;
+        height: 50px;
+        background-color: #06211194;
+        border-radius: 0px 0px 360px 360px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        animation: slotblink 1s infinite;
+        overflow: hidden;
+    }
+    
+    .card-reader::after {
+        content: '';
+        position: absolute;
+        width: 80%;
+        height: 8px;
+        background-color: #333;
+        top: 1%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1003;
+        animation: blink 1s infinite;
+    }
+    
+    @keyframes slotblink {
+        0%, 100% {
+            background-color: #0a391d;
+        }
+        50% {
+            background-color: #062111;
+        }
+    }
+    
+    @keyframes blink {
+        0%, 100% {
+            background-color: rgb(27, 196, 58);
+        }
+        50% {
+            background-color: #333;
+        }
+    }
+    
+    @keyframes slideUp {
+        0% {
+            transform: translateY(2px);
+        }
+        100% {
+            transform: translateY(-200px);
+        }
+    }
+    
+    @keyframes slideDown {
+        0% {
+            transform: translateY(-200px);
+        }
+        100% {
+            transform: translateY(80px);
+        }
+    }
+    
+    .card-animation-container {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: 88%;
+
+        transform: translateX(-50%);
+        width: 290px; /* Adjust width as needed */
+        z-index: 1002;
+    }
+    
+    .card-animation-container img {
+        width: 100%;
+    }
+    
+    .stop-blink {
+        animation: none !important;
+    }
+    
+    .stop-blink::after {
+        animation: none !important;
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .card-header22 {
+        color: rgb(162, 238, 11);
+        font-size: 3rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+        transition: 0.8s;
+        }
+        
+        .card-header22
+        {
+        color: gold;
+        }
+        
+
+
+    /* Quiz Card Styles */
+    .quiz2-card {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        background: rgba(8, 7, 7, 0.355);
+        border-radius: 20px;
+        box-shadow: 0 4px 8px 0 yellowgreen;
+        z-index: 1000;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        transition: 0.8s ease;
+        }
+        
+        .quiz2-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        }
+
+    
+    .options2 {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 5rem;
+        }
+        
+        .option22 {
+        width: 45%;
+        cursor: pointer;
+        transition: 0.3s ease-in;
+        }
+        
+        .option22:hover
+        {
+        transform: scale(1.05);
+        box-shadow: 0 9px 6px 0 rgb(0, 68, 255);
+        background: rgba(24, 22, 22, 0.516);
+        }
+        
+        .option22 img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* tryagain Card Styles */
+.quiz3-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 900px; /* Limit maximum width for responsiveness */
+    height: auto;
+    max-height: 80%;
+    background: rgba(8, 7, 7, 0.355);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 yellowgreen;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: 0.8s ease;
+}
+
+.quiz3-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.options3 {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.5rem; /* Adjust margin for spacing */
+}
+
+.option33 {
+    width: 85%;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    border-radius: 10px;
+    overflow: hidden; /* Ensure image overflow is hidden within the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.option33 img {
+    width: 100%; /* Ensure the image fills its container */
+    max-width: 100%; /* Limit image to container width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out; /* Add smooth transition */
+}
+
+.option33:hover {
+    transform: scale(1.05);
+    box-shadow: 0 9px 6px 0 rgb(0, 68, 255);
+    background: rgba(24, 22, 22, 0.516);
+}
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+.quiz4-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: rgba(8, 7, 7, 0.355);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 yellowgreen;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: 0.8s ease;
+}
+
+.quiz4-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.options4 {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 5rem;
+}
+
+.option44 {
+    width: 45%;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+    margin-bottom: 20px;
+}
+
+.option44 img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.option44:hover {
+    transform: scale(1.05);
+    box-shadow: 0 9px 6px 0 rgb(0, 68, 255);
+    background: rgba(24, 22, 22, 0.516);
+}
+
+.option44:hover img {
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+.conclusion {
+    display: none;
+
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 300px; /* Adjust as needed */
+    text-align: center;
+    overflow: hidden; /* Hide overflow to initially hide the <p> tags */
+}
+
+.conclusion:hover {
+    background-color: #333;
+}
+
+.conclusion.expand {
+    max-width: 100%; /* Expand to full width */
+    background-color: #333; /* Keep background color on expand */
+}
+
+.conclusion .content {
+    display: none; /* Initially hide the content */
+}
+
+.conclusion.expand .content {
+    display: block; /* Show content when expanded */
+}
+
+.conclusion h2 {
+    margin-bottom: 10px;
+}
+
+.conclusion p {
+    margin: 10px 0;
+    color: white; /* Ensure text is white */
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+}
+
