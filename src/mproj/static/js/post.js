@@ -119,7 +119,7 @@ $(document).ready(function() {
                                         </div>
                                         <div>
                                             <div class="d-flex align-items-center comment-btn" data-post-id="${items.id}">
-                                                <i class="ti ti-message text-white fs-2 cursor-pointer "  data-bs-toggle="modal" data-bs-target="#modal-simple"></i>   
+                                                <i class="ti ti-message text-white fs-2 cursor-pointer "  data-bs-toggle="modal" data-bs-target="#modal-simple2"></i>   
                                             </div>
                                         </div>
                                         
@@ -129,7 +129,7 @@ $(document).ready(function() {
                                         <div class="text-white fs-5 fw-light">${items.description}</div>
                                     </div>
                                 </div>
-                                <div class="modal modal-blur fade" id="modal-simple" tabindex="-1" style="display: none;" aria-hidden="true">
+                                <div class="modal modal-blur fade" id="modal-simple2" tabindex="-1" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
